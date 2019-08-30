@@ -1,0 +1,72 @@
+ext {
+
+    android = [
+            compileSdkVersion: 27,
+            buildToolsVersion: '26.0.2',
+            applicationId    : "com.yj.robust",
+            minSdkVersion    : 21,
+            targetSdkVersion : 27,
+            versionCode      : 12,
+            versionName      : "3.1.0",
+            espressoVersion  : '2.2.2'
+    ]
+
+    def dependVersion = [
+            support          : "27.1.1",
+            design           : "26.0.0-alpha1",
+            cardview         : "24.0.+",
+            rollviewpager    : "1.4.6",
+            rxjava           : "2.0.1",
+            rxAndroid        : "2.0.1",
+            gson             : "2.4",
+            okio             : "1.11.0",
+            tinker_lib       : "1.9.1",
+            rxandroid        : "1.2.0",
+            butterknife      : "8.5.1",
+            annotations      : "21.0.2",
+            nineoldandroids  : "2.4.0+",
+
+    ]
+
+    dependencies = [
+            //base
+            "appcompat-v7"              : "com.android.support:appcompat-v7:${dependVersion.support}",
+            "design"                    : "com.android.support:design:${dependVersion.design}",
+            "cardview"                  : "com.android.support:cardview-v7:${dependVersion.cardview}",
+            "rollviewpager"             : "com.jude:rollviewpager:${dependVersion.rollviewpager}",
+            //    compile 'io.reactivex.rxjava2:rxjava:2.0.1'
+            //    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+            "rxjava"                    : "io.reactivex.rxjava2:rxjava:${dependVersion.rxjava}",
+            "rxandroid"                 : "io.reactivex.rxjava2:rxandroid:${dependVersion.rxAndroid}",
+
+            "gson"                      : "com.google.code.gson:gson:${dependVersion.gson}",
+
+            "butterknife"               : "com.jakewharton:butterknife:${dependVersion.butterknife}",
+            "butterknife-compiler"      : "com.jakewharton:butterknife-compiler:${dependVersion.butterknife}",
+
+
+            "okio"                      : "com.squareup.okio:okio:${dependVersion.okio}",
+            "wechat-sdk"                : "com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+",
+
+            "multidex"                  : "com.android.support:multidex:1.0.1",
+            "annotations"               : "com.android.support:support-annotations:${dependVersion.annotations}",
+
+            /**zxing二维码扫描for Android核心库**/
+            "integration"               : "com.google.zxing:core:latest.integration",
+            "integration_core"          : "com.google.zxing:android-core:latest.integration",
+
+            "nineoldandroids"          : "com.nineoldandroids:library:${dependVersion.nineoldandroids}",
+
+
+            //    compile 'io.reactivex.rxjava2:rxjava:2.0.1'
+            //    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+            //    compile 'com.zhy:okhttputils:2.6.2'
+
+            //    //可选，用于生成application类
+            //    provided('com.tencent.tinker:tinker-android-anno:1.9.1')
+            //    //tinker的核心库
+            //    compile('com.tencent.tinker:tinker-android-lib:1.9.1')
+            //无需引入tinker的任何库,使用tinkerpatch sdk即可
+    ]
+}

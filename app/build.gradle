@@ -1,0 +1,160 @@
+apply plugin: 'com.android.application'
+//apply from: 'tinkerpatch.gradle'
+//apply plugin: 'com.jakewharton.butterknife'
+//apply plugin: 'me.tatarka.retrolambda'
+//apply plugin: 'com.jakewharton.butterknife'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+    useLibrary 'org.apache.http.legacy'
+    defaultConfig {
+        applicationId rootProject.ext.android.applicationId
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode 16
+        versionName "3.1.4"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64' //
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "44ce0e70b6a1908dc6495b99", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
+
+        //添加如下配置就OK了
+        javaCompileOptions {
+            annotationProcessorOptions { includeCompileClasspath = true }
+        }
+        //添加如下代码
+//        jackOptions{
+//            enabled = true
+//        }
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'rob'
+            keyPassword 'yjrobust'
+//            storeFile rootProject.file("keystore/wxkey.jks")
+            storeFile file('robust.jks')
+            //填写你本地的路径
+            storePassword 'yjrobust'
+        }
+        debug {
+            keyAlias 'rob'
+            keyPassword 'yjrobust'
+//            storeFile rootProject.file("keystore/wxkey.jks")
+            storeFile file('robust.jks')
+            //填写你本地的路径
+            storePassword 'yjrobust'
+        }
+    }
+
+//    compileOptions {
+//        sourceCompatibility = 1.8
+//        targetCompatibility = 1.8
+//    }
+
+    android {
+        lintOptions {
+            checkReleaseBuilds false
+            // Or, if you prefer, you can continue to check for errors in release builds,
+            // but continue the build even when errors are found:
+            abortOnError false
+        }
+    }
+//     自定义输出配置
+//    android.applicationVariants.all { variant ->
+//        variant.outputs.all {
+//            outputFileName = "robust${variant.versionName}.apk"
+//        }
+//    }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+        // … and any other excludes go here
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+//            shrinkResources true //在gradle使用shrinkResources去除无用资源，效果非常好。
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        sourceSets {
+            main {
+                jniLibs.srcDirs = ['libs']
+            }
+        }
+    }
+    defaultConfig {
+        multiDexEnabled true
+    }
+    dexOptions {
+        incremental true
+        javaMaxHeapSize "4g"
+    }
+    buildToolsVersion '26.0.2'
+}
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile("com.android.support.test.espresso:espresso-core:2.2.2", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    compile 'com.android.support:design:27.1.1'
+    compile 'com.android.support:cardview-v7:27.0.+'
+    compile 'com.jude:rollviewpager:1.4.6'
+    compile 'io.reactivex.rxjava2:rxjava:2.0.1'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'com.google.code.gson:gson:2.4'
+
+    //下面两句就是依赖了
+    compile 'com.jakewharton:butterknife:8.5.1'
+    compile 'com.jakewharton:butterknife-compiler:8.5.1'
+    compile rootProject.ext.dependencies["okio"]
+    compile rootProject.ext.dependencies["wechat-sdk"]
+    compile rootProject.ext.dependencies["cardview"]
+    compile rootProject.ext.dependencies["multidex"]
+    compile rootProject.ext.dependencies["annotations"]
+    /**zxing二维码生成与识别核心库**/
+    /**zxing二维码扫描for Android核心库**/
+    compile rootProject.ext.dependencies["integration"]
+    compile rootProject.ext.dependencies["integration_core"]
+    compile rootProject.ext.dependencies["nineoldandroids"]
+    compile files('libs/ShareSDK-Core-2.8.2.jar')
+    compile files('libs/glide-3.6.1.jar')
+    //    compile project(':xrecyclerview')
+    //    compile project(':pickerview')
+    //    compile project(':gallery')
+    compile files('libs/rxjava-1.1.1.jar')
+    compile files('libs/rxandroid-1.1.1.jar')
+    compile files('libs/okhttp-3.2.0.jar')
+    compile files('libs/okhttputils.jar')
+    compile files('libs/alipaySdk-20170725.jar')
+    compile files('libs/AMap_Location_V4.1.0_20180619.jar')
+    compile files('libs/AMap_Search_V6.1.0_20180330.jar')
+    //    compile project(':sobotsdk')
+    testCompile 'junit:junit:4.12'
+    //    compile("com.tinkerpatch.sdk:tinkerpatch-android-sdk:${TINKERPATCH_VERSION}") {
+    //        changing = true
+    //    }
+    implementation project(path: ':gallery', configuration: 'default')
+    implementation project(path: ':pickerview', configuration: 'default')
+    implementation project(path: ':sobotsdk', configuration: 'default')
+    implementation project(path: ':xrecyclerview', configuration: 'default')
+}
