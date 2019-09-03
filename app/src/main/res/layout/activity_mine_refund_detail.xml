@@ -6,8 +6,15 @@
               android:background="@color/CED_F1_F4"
               android:orientation="vertical">
 
-    <include layout="@layout/titlebar_layout"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/C50_BD_B5"
+        android:orientation="vertical"
+        android:paddingTop="28dp">
 
+        <include layout="@layout/titlebar_layout"/>
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -368,8 +375,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dis15"
-                        android:visibility="gone"
-                        >
+                        android:visibility="gone">
 
                         <TextView
                             android:id="@+id/refund_detail_tv_reason_"
@@ -377,8 +383,7 @@
                             android:layout_height="wrap_content"
                             android:text="驳回原因 :"
                             android:textColor="@color/C10_10_10"
-                            android:textSize="@dimen/font13"
-                            />
+                            android:textSize="@dimen/font13"/>
 
                         <TextView
                             android:id="@+id/refund_detail_tv_reason_detail_"
@@ -396,8 +401,7 @@
                         android:id="@+id/order_detail_rl_sendcost"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dis15"
-                        >
+                        android:layout_marginTop="@dimen/dis15">
 
                         <TextView
                             android:id="@+id/refund_detail_tv_price"
@@ -405,8 +409,7 @@
                             android:layout_height="wrap_content"
                             android:text="退款余额 :"
                             android:textColor="@color/C10_10_10"
-                            android:textSize="@dimen/font13"
-                            />
+                            android:textSize="@dimen/font13"/>
 
                         <TextView
                             android:id="@+id/refund_detail_tv_price_"
@@ -423,8 +426,7 @@
                         android:id="@+id/order_detial_rl_rest"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dis15"
-                        >
+                        android:layout_marginTop="@dimen/dis15">
 
                         <TextView
                             android:id="@+id/refund_detail_tv_time"
@@ -449,8 +451,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/dis15"
-                        android:layout_marginTop="@dimen/dis15"
-                        >
+                        android:layout_marginTop="@dimen/dis15">
 
                         <TextView
                             android:id="@+id/refund_detail_tv_number"
@@ -468,10 +469,8 @@
                             android:paddingLeft="@dimen/dis4"
                             android:text=""
                             android:textColor="@color/C10_10_10"
-                            android:textSize="@dimen/font13"
-                            />
+                            android:textSize="@dimen/font13"/>
                     </RelativeLayout>
-
                 </LinearLayout>
 
                 <View
@@ -481,9 +480,7 @@
                     android:background="@color/CF6_F8_F9"
                     android:visibility="gone"/>
 
-
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </RelativeLayout>
-
 </LinearLayout>

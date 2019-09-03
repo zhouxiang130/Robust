@@ -40,6 +40,7 @@
     <color name="CF8_F9_FB">#F8F9FB</color>
     <color name="CF5_F5_F5">#F5F5F5</color>
     <color name="Ccc_cc_cc">#cccccc</color>
+    <color name="CEE_EE_EE">#EEEEEE</color>
     <color name="CE6_E6_E6">#E6E6E6</color>
     <color name="CDC_DC_DC">#DCDCDC</color>
     <color name="FFB_EB_2B2">#FFBEB2B2</color>
@@ -89,8 +90,11 @@
     <color name="CE9_39_39">#e93939</color>
     <color name="red">#FF3E5E</color>
     <color name="Ce8_3c_3c">#e83c3c</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#8bc4ae</color>
     <color name="C45_1F_84">#451F84</color>
+    <color name="C50_BD_B5">#50BDB5</color>
+    <color name="C3F_84_A8">#3F84A8</color>
+    <color name="C27_27_27">#272727</color>
 
     <color name="C35_B6_FF">#35b6ff</color>
     <color name="CFF_56_A7_F8">#FF56A7F8</color>

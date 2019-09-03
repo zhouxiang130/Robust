@@ -73,7 +73,7 @@
                     android:id="@+id/item_mine_collection_wuliu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="问地物流"
+                    android:text="好新优物流"
                     android:textColor="@color/white"
                     android:textSize="@dimen/font13"
                     android:paddingBottom="@dimen/dis2"

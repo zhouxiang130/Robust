@@ -6,7 +6,15 @@
               android:background="@color/CF8_F8_F8"
               android:orientation="vertical">
 
-    <include layout="@layout/titlebar_layout"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/C50_BD_B5"
+        android:orientation="vertical"
+        android:paddingTop="28dp">
+
+        <include layout="@layout/titlebar_layout"/>
+    </LinearLayout>
 
     <com.yj.robust.widget.UserDefineScrollView
         android:layout_width="match_parent"
@@ -96,14 +104,9 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/dis15"
-                    app:isOpened="false"
-                    />
-
-
+                    app:isOpened="false"/>
             </RelativeLayout>
-            <!--</com.yj.robusts.widget.MaterialRippleLayout>-->
-
-
+            
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dis0.5"
@@ -197,6 +200,41 @@
                 </RelativeLayout>
             </com.yj.robust.widget.MaterialRippleLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dis0.5"
+                android:background="@color/CE7_E7_E7"/>
+
+            <com.yj.robust.widget.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/mine_setting_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/dis18"
+                    android:layout_marginTop="@dimen/dis18"
+                    android:paddingRight="@dimen/dis15">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/dis15"
+                        android:text="关于我们"
+                        android:textColor="@color/C1E_1E_1E"
+                        android:textSize="@dimen/font15"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@mipmap/next_center_order"
+                        android:textSize="@dimen/font14"/>
+                </RelativeLayout>
+            </com.yj.robust.widget.MaterialRippleLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -262,8 +300,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white"
-                >
+                android:background="@color/white">
 
                 <TextView
                     android:id="@+id/mine_setting_logout"

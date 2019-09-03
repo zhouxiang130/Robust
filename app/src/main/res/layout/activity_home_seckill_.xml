@@ -6,16 +6,22 @@
               android:background="@color/CED_F1_F4"
               android:orientation="vertical">
 
-    <include layout="@layout/titlebar_layout"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/C50_BD_B5"
+        android:orientation="vertical"
+        android:paddingTop="28dp">
+
+        <include layout="@layout/titlebar_layout"/>
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/seckill_head_banner_img"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dis150"
-        android:src="@mipmap/default_goods"
-        android:scaleType="centerCrop"/>
-
-
+        android:scaleType="centerCrop"
+        android:src="@mipmap/default_goods"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

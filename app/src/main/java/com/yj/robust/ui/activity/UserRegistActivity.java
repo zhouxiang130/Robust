@@ -10,13 +10,11 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -54,7 +52,6 @@ import okhttp3.Response;
  */
 
 public class UserRegistActivity extends BaseActivity {
-	private static final String TAG = "UserRegistActivity";
 	@BindView(R.id.user_regist_tv_tel)
 	TextView tvTel;
 	@BindView(R.id.user_regist_et_tel)
@@ -75,10 +72,12 @@ public class UserRegistActivity extends BaseActivity {
 	TextView tvSend;
 	@BindView(R.id.user_regist_btn_confirm)
 	Button btnConfirm;
-	@BindView(R.id.title_view)
-	View vLine;
-	@BindView(R.id.title_layout)
-	LinearLayout llTop;
+
+//	@BindView(R.id.title_view)
+//	View vLine;
+
+	//	@BindView(R.id.title_layout)
+//	LinearLayout llTop;
 	@BindView(R.id.user_regist_cbx)
 	CheckBox cbCheck;
 	@BindView(R.id.scrollView)
@@ -124,13 +123,13 @@ public class UserRegistActivity extends BaseActivity {
 
 	@Override
 	protected int getContentView() {
-		return R.layout.activity_user_regist;
+		return R.layout.activity_user_regists;
 	}
 
 	@Override
 	protected void initView() {
 		setTitleText("用户注册");
-
+		hideTitle();
 	}
 
 	@Override
@@ -175,11 +174,11 @@ public class UserRegistActivity extends BaseActivity {
 
 	@Override
 	protected void showShadow1() {
-		vLine.setVisibility(View.GONE);
-		llTop.setBackgroundColor(getResources().getColor(R.color.CF7_F9_FA));
+//		vLine.setVisibility(View.GONE);
+//		llTop.setBackgroundColor(getResources().getColor(R.color.CF7_F9_FA));
 	}
 
-	@OnClick({R.id.user_regist_agreement, R.id.user_regist_tvsend, R.id.user_regist_btn_confirm})
+	@OnClick({R.id.user_regist_agreement, R.id.user_regist_tvsend, R.id.user_regist_btn_confirm, R.id.title_ll_iv})
 	public void onClick(View view) {
 		switch (view.getId()) {
 			case R.id.user_regist_agreement:
@@ -224,9 +223,11 @@ public class UserRegistActivity extends BaseActivity {
 				} else {
 					btnConfirm.setEnabled(false);
 					doAsyncRegister(etTel.getText().toString().trim(), etPwd.getText().toString().trim(),
-							etVerify.getText
-									().toString().trim());
+							etVerify.getText().toString().trim(), etInvite.getText().toString().trim());
 				}
+				break;
+			case R.id.title_ll_iv:
+				finish();
 				break;
 		}
 	}
@@ -267,83 +268,88 @@ public class UserRegistActivity extends BaseActivity {
 		map.put(Key.tel, tel);
 		map.put(Key.type, Key.register);
 		LogUtils.i("传输的值" + URLBuilder.format(map));
-		OkHttpUtils.post().url(URLBuilder.URLBaseHeader + URLBuilder.SendMsg)
-				.tag(this)
-				.addParams(Key.data, URLBuilder.format(map))
-//                .addParams("tel","18338764293")
-				.build().execute
-				(new Utils.MyResultCallback<NormalEntity>() {
+		try {
+			OkHttpUtils.post().url(URLBuilder.URLBaseHeader + URLBuilder.SendMsg)
+					.tag(this)
+					//.addParams(Key.data, URLBuilder.format(map))
+					//.addParams("tel","18338764293")
+					.addParams(Key.data, AESUtils.encryptData(Constant.KEY, URLBuilder.format(map)))
+					.addParams("key", RSAUtils.encryptByPublicKey(Constant.KEY))
+					.build().execute
+					(new Utils.MyResultCallback<NormalEntity>() {
 
-					@Override
-					public void onBefore(Request request) {
-						LogUtils.i("我onBefore了");
-						super.onBefore(request);
-						isSend = true;
-						isNetError = false;
+						@Override
+						public void onBefore(Request request) {
+							LogUtils.i("我onBefore了");
+							super.onBefore(request);
+							isSend = true;
+							isNetError = false;
 
-						countTime = 60;
-						if (!mThread.isAlive()) {
-							if (!mThread.isInterrupted()) {
-								mThread.start();
+							countTime = 60;
+							if (!mThread.isAlive()) {
+								if (!mThread.isInterrupted()) {
+									mThread.start();
+								}
 							}
 						}
-					}
 
-					@Override
-					public void onError(Call call, Exception e) {
-						super.onError(call, e);
-						if (call.isCanceled()) {
-							call.cancel();
-						} else {
-							ToastUtils.showToast(UserRegistActivity.this, "网络故障,请稍后再试");
-						}
-						LogUtils.i("我进入onError了" + e);
+						@Override
+						public void onError(Call call, Exception e) {
+							super.onError(call, e);
+							if (call.isCanceled()) {
+								call.cancel();
+							} else {
+								ToastUtils.showToast(UserRegistActivity.this, "网络故障,请稍后再试");
+							}
+							LogUtils.i("我进入onError了" + e);
 
-						isSend = false;
-						isNetError = true;
-//                        mThread=null
-						//发送验证码按钮
-						tvSend.setText("获取");
-					}
-
-					//进行json解析.
-					@Override
-					public NormalEntity parseNetworkResponse(Response response) throws Exception {
-						String json = response.body().string().trim();
-						LogUtils.i("json的值" + json);
-						return new Gson().fromJson(json, NormalEntity.class);
-					}
-
-					//对返回结果进行判断.
-					@Override
-					public void onResponse(NormalEntity response) {
-						LogUtils.i("我onResponse了");
-						if (isFinishing()) {
-							return;
-						}
-						if (response.getCode().equals(response.HTTP_OK)) {
-							ToastUtils.showToast(UserRegistActivity.this, "验证码已发送");
-							isNetError = false;
-						} else {
-							ToastUtils.showToast(UserRegistActivity.this, response.getMsg() + "):" + response.getCode());
-							isNetError = true;
 							isSend = false;
-
+							isNetError = true;
+							//                        mThread=null
+							//发送验证码按钮
+							tvSend.setText("获取");
 						}
-					}
-				});
+
+						//进行json解析.
+						@Override
+						public NormalEntity parseNetworkResponse(Response response) throws Exception {
+							String json = response.body().string().trim();
+							LogUtils.i("json的值" + json);
+							return new Gson().fromJson(json, NormalEntity.class);
+						}
+
+						//对返回结果进行判断.
+						@Override
+						public void onResponse(NormalEntity response) {
+							LogUtils.i("我onResponse了");
+							if (isFinishing()) {
+								return;
+							}
+							if (response.getCode().equals(response.HTTP_OK)) {
+								ToastUtils.showToast(UserRegistActivity.this, "验证码已发送");
+								isNetError = false;
+							} else {
+								ToastUtils.showToast(UserRegistActivity.this, response.getMsg() + "):" + response.getCode());
+								isNetError = true;
+								isSend = false;
+
+							}
+						}
+					});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	//做异步的注册 使用okhttp进行操作
-	private void doAsyncRegister(final String userName, final String passWord, String vertifyCode) {
+	private void doAsyncRegister(final String userName, final String passWord, String vertifyCode, String parentCode) {
 		Map<String, String> map = new HashMap<>();
 		map.put("userPhone", userName);
 		map.put("password", MD5Utils.MD5(passWord));
 		map.put("msgCode", vertifyCode);
-		if (!TextUtils.isEmpty(etInvite.getText().toString().trim())) {
-			map.put("parentCode", etInvite.getText().toString().trim());
+		if (!TextUtils.isEmpty(parentCode)) {
+			map.put("parentCode", parentCode);
 		}
-		LogUtils.i("doAsyncRegister 传输的值" + URLBuilder.format(map));
 		try {
 			OkHttpUtils.post().url(URLBuilder.URLBaseHeader + URLBuilder.Regist).tag(this)
 //					.addParams(Key.data, AESUtils.encryptData(Constant.KEY, URLBuilder.format(map)))
@@ -400,9 +406,9 @@ public class UserRegistActivity extends BaseActivity {
 								return;
 							}
 							dismissDialog();
-							btnConfirm.setEnabled(true);
 							if (response.getCode().equals(response.HTTP_OK)) {
 								ToastUtils.showToast(UserRegistActivity.this, "注册成功");
+								btnConfirm.setEnabled(true);
 								Intent intent = new Intent();
 								intent.setAction("CN.YJ.ROBUST.REFRESHDATA");
 								sendBroadcast(intent);
@@ -435,15 +441,16 @@ public class UserRegistActivity extends BaseActivity {
 					});
 		} catch (Exception e) {
 			e.printStackTrace();
-			Log.e(TAG, "doAsyncRegister: " + e.toString());
 		}
 	}
 
 	private void saveInfo(UserInfoEntity info) {
+		LogUtils.i("uid的值" + info.getData().getUserPhone());
 		mUtils.saveTel(info.getData().getUserPhone());
 		LogUtils.i("uid的值" + info.getData().getUserId());
 		mUtils.saveUid(info.getData().getUserId());
-		LogUtils.i("uid的userutils" + mUtils.getUid());
+		LogUtils.i("uid的值" + mUtils.getUid());
+		LogUtils.i("uid的值" + mUtils.getTel());
 		mUtils.saveUserName(info.getData().getUserName());
 		mUtils.saveAvatar(info.getData().getHeadImg());
 		mUtils.saveInviteCode(info.getData().getAgentNumber());
@@ -451,8 +458,6 @@ public class UserRegistActivity extends BaseActivity {
 		mUtils.saveWXOpenId(info.getData().getWechatId());
 		mUtils.saveAlipay(info.getData().getAlipayAccount());
 		mUtils.saveAlipayName(info.getData().getAlipayName());
-
-
 	}
 
 	private void initEtView() {
@@ -475,7 +480,14 @@ public class UserRegistActivity extends BaseActivity {
 
 			@Override
 			public void afterTextChanged(Editable s) {
-
+				int index = etPwd.getSelectionStart() - 1;
+				if (index > 0) {
+					if (com.yj.robust.util.TextUtils.isEmojiCharacter(s.charAt(index))) {
+						Editable edit = etPwd.getText();
+						edit.delete(s.length() - 2, s.length());
+						ToastUtils.showToast(UserRegistActivity.this, "不支持输入表情符号");
+					}
+				}
 			}
 		});
 		etTel.addTextChangedListener(new TextWatcher() {

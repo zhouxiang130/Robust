@@ -91,7 +91,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 	}
 
 	@TargetApi(21)
-	private void hideTitle() {
+	public void hideTitle() {
 		if (Build.VERSION.SDK_INT >= 21) {
 			View decorView = getWindow().getDecorView();
 			int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;

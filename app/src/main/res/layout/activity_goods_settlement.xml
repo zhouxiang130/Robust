@@ -6,13 +6,19 @@
               android:background="@color/CF6_F8_F9"
               android:orientation="vertical">
 
-    <include layout="@layout/titlebar_layout"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/C50_BD_B5"
+        android:orientation="vertical"
+        android:paddingTop="28dp">
+
+        <include layout="@layout/titlebar_layout"/>
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:id="@+id/settlement_goods_bottom"
@@ -185,8 +191,8 @@
                     android:id="@+id/settlement_goods_ll_limit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/settlement_goods_tv_tag"
@@ -221,6 +227,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dis0.5"
                     android:background="@color/CE7_E7_E7"/>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dis0.5"
@@ -246,7 +253,6 @@
                         android:layout_height="wrap_content"
                         android:paddingBottom="@dimen/dis8"
                         >
-
 
 
                         <com.yj.robust.widget.RoundedImageView.RoundedImageView
@@ -293,6 +299,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dis0.5"
                         android:background="@color/CE7_E7_E7"/>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dis0.5"
@@ -304,7 +311,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dis65"
                         >
-
 
 
                         <RelativeLayout

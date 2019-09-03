@@ -15,16 +15,16 @@
         <View
             android:id="@+id/frag_home_v_head"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dis24"
-            android:background="@color/black"
+            android:layout_height="@dimen/dis28"
+            android:background="@color/C50_BD_B5"
             android:visibility="gone"/>
-
 
         <LinearLayout
             android:id="@+id/frag_classify_rl_top_"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/frag_home_v_head"
+            android:background="@color/C50_BD_B5"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -34,8 +34,7 @@
                 android:layout_height="@dimen/dis30"
                 android:layout_marginLeft="@dimen/dis10"
                 android:layout_marginRight="@dimen/dis5"
-                android:gravity="center"
-                android:visibility="visible">
+                android:gravity="center">
 
                 <ImageView
                     android:id="@+id/frag_store_info_iv"
@@ -43,8 +42,8 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/dis3"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/shouye_dingwei"/>
-
+                    android:src="@mipmap/shouye_dingwei"
+                    android:visibility="gone"/>
 
                 <com.yj.robust.widget.MarqueeTextView
                     android:id="@+id/frag_homes_tv_info"
@@ -60,8 +59,8 @@
                     android:singleLine="true"
                     android:textColor="@color/C1E_1E_1E"
                     android:textSize="@dimen/font15"
-                    ptr:ignore="EllipsizeMaxLines"/>
-
+                    ptr:ignore="EllipsizeMaxLines"
+                    android:visibility="gone"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -70,7 +69,7 @@
                     android:paddingLeft="@dimen/dis5"
                     android:paddingRight="@dimen/dis5"
                     android:src="@mipmap/shouye_jiantou"
-                    android:visibility="visible"/>
+                    android:visibility="invisible"/>
 
             </LinearLayout>
 
@@ -79,10 +78,7 @@
                 android:id="@+id/frag_classify_rl_top"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dis45"
-                android:layout_below="@id/frag_home_v_head"
-                android:background="@color/white"
-                >
-                <!--android:background="@color/transparent"-->
+                android:layout_below="@id/frag_home_v_head">
 
                 <RelativeLayout
                     android:id="@+id/frag_my_info"
@@ -100,7 +96,7 @@
                         android:layout_alignParentBottom="true"
                         android:padding="@dimen/dis3"
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/xiaoxi1"/>
+                        android:src="@mipmap/message"/>
 
                     <TextView
                         android:id="@+id/frag_home_tv_info"
@@ -165,8 +161,7 @@
                     android:id="@+id/xrecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/Cf7_f7_f7"
-                    />
+                    android:background="@color/Cf7_f7_f7"/>
 
                 <View
                     android:id="@+id/home_vline"

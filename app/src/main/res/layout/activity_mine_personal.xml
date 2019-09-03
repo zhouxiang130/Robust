@@ -6,19 +6,25 @@
               android:background="@color/CF8_F8_F8"
               android:orientation="vertical">
 
-    <include layout="@layout/titlebar_layout"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/C50_BD_B5"
+        android:orientation="vertical"
+        android:paddingTop="28dp">
+
+        <include layout="@layout/titlebar_layout"/>
+    </LinearLayout>
 
     <com.yj.robust.widget.UserDefineScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <View
                 android:layout_width="match_parent"

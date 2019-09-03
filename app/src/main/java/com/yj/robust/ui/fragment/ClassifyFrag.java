@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.google.gson.Gson;
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.yj.robust.R;
 import com.yj.robust.base.BaseFragment;
 import com.yj.robust.base.URLBuilder;
@@ -46,7 +45,6 @@ import okhttp3.Response;
  */
 
 public class ClassifyFrag extends BaseFragment {
-
 	@BindView(R.id.recyclerView)
 	RecyclerView titleRecyclerView;
 	@BindView(R.id.contentRecyclerview)
@@ -57,12 +55,9 @@ public class ClassifyFrag extends BaseFragment {
 	RelativeLayout rlTop;
 	@BindView(R.id.frag_classify_head)
 	View vHead;
-
-
 	ClassifyTitleAdapter mTitleAdapter;
 	ClassifyContentAdapter mContentAdapter;
 	private GridLayoutManager gridLayoutManager;
-
 	private List<ClassifyEntity.ClassifyData.ClassifyItem> mTitle;
 	private ClassifyContentEntity.ClassifyContentData data;
 
@@ -76,20 +71,16 @@ public class ClassifyFrag extends BaseFragment {
 	@Override
 	protected void initData() {
 		mTitle = new ArrayList<>();
-
 		LinearLayoutManager titleLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
 		titleRecyclerView.setLayoutManager(titleLayoutManager);
 		mTitleAdapter = new ClassifyTitleAdapter(getActivity(), mTitle);
 		titleRecyclerView.setAdapter(mTitleAdapter);
-
 //		LinearLayoutManager contentLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
 //		contentRecyclerView.setLayoutManager(contentLayoutManager);
 		gridLayoutManager = new GridLayoutManager(getActivity(), 3);
 		contentRecyclerView.setLayoutManager(gridLayoutManager);
-
 		mContentAdapter = new ClassifyContentAdapter(getActivity(), data);
 		contentRecyclerView.setAdapter(mContentAdapter);
-
 		mTitleAdapter.setOnItemClickListener(new ClassifyTitleAdapter.SpendDetialClickListener() {
 			@Override
 			public void onItemClick(View view, int postion) {

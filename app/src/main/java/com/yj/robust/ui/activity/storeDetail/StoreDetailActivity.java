@@ -7,7 +7,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,12 +17,10 @@ import com.yj.robust.R;
 import com.yj.robust.base.BaseActivity;
 import com.yj.robust.base.Key;
 import com.yj.robust.base.URLBuilder;
-import com.yj.robust.model.NormalEntity;
 import com.yj.robust.model.NormalEntitys;
 import com.yj.robust.model.ShopDetailEntity;
 import com.yj.robust.ui.activity.SearchActivity;
 import com.yj.robust.ui.adapter.MineOrderTabAdapter;
-import com.yj.robust.ui.adapter.StoreAdapter;
 import com.yj.robust.ui.fragment.MineStoreFrag.MineStoreFrag;
 import com.yj.robust.ui.fragment.MineStoreFrag.MineStoreFrags;
 import com.yj.robust.util.IntentUtils;
@@ -36,7 +33,6 @@ import com.yj.robust.widget.Dialog.StoreInfoDialogs;
 import com.yj.robust.widget.RoundedImageView.RoundedImageView;
 import com.zhy.http.okhttp.OkHttpUtils;
 
-import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,339 +52,336 @@ import okhttp3.Response;
 
 public class StoreDetailActivity extends BaseActivity {
 
-	private static final String TAG = "StoreDetailActivity";
-	//	@BindView(R.id.title_ll_iv)
+    private static final String TAG = "StoreDetailActivity";
+    //	@BindView(R.id.title_ll_iv)
 //	ImageView ivTitleIcon;
-	@BindView(R.id.tv_store_detail_collect)
-	TextView tvCollect;
+    @BindView(R.id.tv_store_detail_collect)
+    TextView tvCollect;
 
-	@BindView(R.id.img_shop_icon)
-	RoundedImageView shopIcon;
-	@BindView(R.id.shop_detail_name)
-	TextView tvShopName;
-	//	@BindView(R.id.shop_dispatch_tv_money)
+    @BindView(R.id.img_shop_icon)
+    RoundedImageView shopIcon;
+    @BindView(R.id.shop_detail_name)
+    TextView tvShopName;
+    //	@BindView(R.id.shop_dispatch_tv_money)
 //	TextView tvDispatch;
-	@BindView(R.id.shop_dispatch_tv_publicity)
-	TextView tvPublicity;
-	@BindView(R.id.shop_rl_info)
-	RelativeLayout rlInfo;
-	@BindView(R.id.shop_tv_services)
-	TextView tvServices;
+    @BindView(R.id.shop_dispatch_tv_publicity)
+    TextView tvPublicity;
+    @BindView(R.id.shop_rl_info)
+    RelativeLayout rlInfo;
+    @BindView(R.id.shop_tv_services)
+    TextView tvServices;
+    @BindView(R.id.tv_store_states)
+    TextView tvStoteStates;
+    @BindView(R.id.iv_store_banner)
+    RelativeLayout storeBanner;
+    @BindView(R.id.tl_home_toolbar)
+    Toolbar tlHomeToolbar;
+    @BindView(R.id.appbar)
+    AppBarLayout appBarLayout;
+    @BindView(R.id.shop_order_tablayout)
+    TabLayout tabLayout;
+    @BindView(R.id.viewpager)
+    ViewPager mViewpager;
+    @BindView(R.id.fab_home_random)
+    FloatingActionButton floatButtom;
+    public ShopDetailEntity datas;
 
-	@BindView(R.id.tv_store_states)
-	TextView tvStoteStates;
+    private List<String> mTitle = new ArrayList<>();
+    private List<Fragment> mFragment = new ArrayList<>();
+    private String shopId;
 
-
-	@BindView(R.id.iv_store_banner)
-	RelativeLayout storeBanner;
-	@BindView(R.id.tl_home_toolbar)
-	Toolbar tlHomeToolbar;
-	@BindView(R.id.appbar)
-	AppBarLayout appBarLayout;
-	@BindView(R.id.shop_order_tablayout)
-	TabLayout tabLayout;
-	@BindView(R.id.viewpager)
-	ViewPager mViewpager;
-	@BindView(R.id.fab_home_random)
-	FloatingActionButton floatButtom;
-	public ShopDetailEntity datas;
-
-	private List<String> mTitle = new ArrayList<>();
-	private List<Fragment> mFragment = new ArrayList<>();
-	private String shopId;
-
-	@Override
-	protected int getContentView() {
-		return R.layout.activity_store_detail;
-	}
+    @Override
+    protected int getContentView() {
+        return R.layout.activity_store_detail;
+    }
 
 
-	@Override
-	protected void initView() {
+    @Override
+    protected void initView() {
 //		transTitle();
 //		ivTitleIcon.setImageResource(R.drawable.ic_keyboard_arrow_left_white_24dp);
-		setTitleColor(getResources().getColor(R.color.white));
-		setTitleBackground(getResources().getColor(R.color.transparent));
-		shopId = getIntent().getStringExtra("shopId");
-		mTitle.add("商品列表");
-		mTitle.add("店铺详情");
+        setTitleColor(getResources().getColor(R.color.white));
+        setTitleBackground(getResources().getColor(R.color.transparent));
+        shopId = getIntent().getStringExtra("shopId");
+        mTitle.add("商品列表");
+        mTitle.add("店铺详情");
 
-		mFragment.add(MineStoreFrag.instant(shopId));
-		mFragment.add(MineStoreFrags.instant(shopId));
+        mFragment.add(MineStoreFrag.instant(shopId));
+        mFragment.add(MineStoreFrags.instant(shopId));
 
-		doAsyncShopInfo();
-		MineOrderTabAdapter adapter = new MineOrderTabAdapter(getSupportFragmentManager(), mTitle, mFragment);
-		mViewpager.setAdapter(adapter);
+        doAsyncShopInfo();
+        MineOrderTabAdapter adapter = new MineOrderTabAdapter(getSupportFragmentManager(), mTitle, mFragment);
+        mViewpager.setAdapter(adapter);
 
-		floatButtom.setVisibility(View.VISIBLE);
-		//为TabLayout设置ViewPager
-		tabLayout.setupWithViewPager(mViewpager);
-		//使用ViewPager的适配器
-		//忘了这句干啥的了. 如果使用过程中有问题.应该就是这句导致的.
-		tabLayout.setTabsFromPagerAdapter(adapter);
+        floatButtom.setVisibility(View.VISIBLE);
+        //为TabLayout设置ViewPager
+        tabLayout.setupWithViewPager(mViewpager);
+        //使用ViewPager的适配器
+        //忘了这句干啥的了. 如果使用过程中有问题.应该就是这句导致的.
+        tabLayout.setTabsFromPagerAdapter(adapter);
 //		setFabDynamicState();
-		tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-			@Override
-			public void onTabSelected(TabLayout.Tab tab) {
-				int position = tab.getPosition();
-				if (position == 1) {
-					floatButtom.setVisibility(View.GONE);
-				} else {
-					floatButtom.setVisibility(View.VISIBLE);
-				}
-			}
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int position = tab.getPosition();
+                if (position == 1) {
+                    floatButtom.setVisibility(View.GONE);
+                } else {
+                    floatButtom.setVisibility(View.VISIBLE);
+                }
+            }
 
-			@Override
-			public void onTabUnselected(TabLayout.Tab tab) {
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
 
-			}
+            }
 
-			@Override
-			public void onTabReselected(TabLayout.Tab tab) {
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
 
-			}
-		});
+            }
+        });
 
-		floatButtom.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				MineStoreFrag.instant(shopId).setmRecyclerView();
-			}
-		});
-	}
-
-
-	/**
-	 * 是否已经设置了沉浸式状态栏
-	 */
-	private boolean isSetupImmersive;
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-		if (!isSetupImmersive) {
-			setImmersiveStatus();
-			isSetupImmersive = true;
-		}
-	}
+        floatButtom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MineStoreFrag.instant(shopId).setmRecyclerView();
+            }
+        });
+    }
 
 
-	/**
-	 * 设置沉浸式状态栏
-	 */
-	private void setImmersiveStatus() {
-		View[] views = setImmersiveView();
-		if (views == null || views.length < 1) {
-			return;
-		}
-		StatusBarUtil.immersive(this);
-		for (View view : views) {
-			StatusBarUtil.setPaddingSmart(this, view);
-		}
-	}
+    /**
+     * 是否已经设置了沉浸式状态栏
+     */
+    private boolean isSetupImmersive;
 
-	protected View[] setImmersiveView() {
-		return new View[]{storeBanner, tlHomeToolbar};
-	}
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!isSetupImmersive) {
+            setImmersiveStatus();
+            isSetupImmersive = true;
+        }
+    }
 
 
-	/**
-	 * 根据 CollapsingToolbarLayout 的折叠状态，设置 FloatingActionButton 的隐藏和显示
-	 */
-	private void setFabDynamicState() {
-		AppBarCollapsingStateHelper.with(appBarLayout)
-				.listener(new AppBarCollapsingStateHelper.DefaultAppBarStateListener() {
-					@Override
-					public void onChanging(boolean isBecomingExpanded) {
+    /**
+     * 设置沉浸式状态栏
+     */
+    private void setImmersiveStatus() {
+        View[] views = setImmersiveView();
+        if (views == null || views.length < 1) {
+            return;
+        }
+        StatusBarUtil.immersive(this);
+        for (View view : views) {
+            StatusBarUtil.setPaddingSmart(this, view);
+        }
+    }
 
-					}
-				});
-	}
-
-
-	@Override
-	protected void initData() {
-		mViewpager.setCurrentItem(getIntent().getIntExtra("page", 0));
-	}
-
-
-	@OnClick({R.id.frag_store_finish, R.id.frag_store_rl_search, R.id.tv_store_detail_collect, R.id.shop_rl_info})
-	public void onViewClicked(View view) {
-		switch (view.getId()) {
-			case R.id.frag_store_finish:
-				finish();
-				break;
-			case R.id.frag_store_rl_search:
-				Intent intent = new Intent(StoreDetailActivity.this, SearchActivity.class);
-				intent.putExtra("shopId", shopId);
-				startActivity(intent);
-				break;
-			case R.id.tv_store_detail_collect:
-
-				if (mUtils.isLogin()) {
-					LogUtils.i("我进入网络操作了");
-					tvCollect.setClickable(false);
-					doAsyncCollect();
-				} else {
-					IntentUtils.IntentToLogin(StoreDetailActivity.this);
-				}
-
-				break;
-			case R.id.shop_rl_info:
-				if (datas != null) {
-					showDialogs(datas,1);
-
-				}
-				break;
-		}
-	}
-
-	private void doAsyncShopInfo() {
-		Map<String, String> map = new HashMap<>();
-		map.put("shopId", shopId);
-		map.put("userId", mUtils.getUid());
-		LogUtils.i("传输的值" + URLBuilder.format(map));
-		OkHttpUtils.post().url(URLBuilder.URLBaseHeader + "/phone/homePageTwo/storeDetail.act").tag(this)
-				.addParams(Key.data, URLBuilder.format(map))
-				.build().execute(new Utils.MyResultCallback<ShopDetailEntity>() {
+    protected View[] setImmersiveView() {
+        return new View[]{storeBanner, tlHomeToolbar};
+    }
 
 
-			@Override
-			public void onError(Call call, Exception e) {
-				super.onError(call, e);
+    /**
+     * 根据 CollapsingToolbarLayout 的折叠状态，设置 FloatingActionButton 的隐藏和显示
+     */
+    private void setFabDynamicState() {
+        AppBarCollapsingStateHelper.with(appBarLayout)
+                .listener(new AppBarCollapsingStateHelper.DefaultAppBarStateListener() {
+                    @Override
+                    public void onChanging(boolean isBecomingExpanded) {
+
+                    }
+                });
+    }
+
+
+    @Override
+    protected void initData() {
+        mViewpager.setCurrentItem(getIntent().getIntExtra("page", 0));
+    }
+
+
+    @OnClick({R.id.frag_store_finish, R.id.frag_store_rl_search, R.id.tv_store_detail_collect, R.id.shop_rl_info})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.frag_store_finish:
+                finish();
+                break;
+            case R.id.frag_store_rl_search:
+                Intent intent = new Intent(StoreDetailActivity.this, SearchActivity.class);
+                intent.putExtra("shopId", shopId);
+                startActivity(intent);
+                break;
+            case R.id.tv_store_detail_collect:
+
+                if (mUtils.isLogin()) {
+                    LogUtils.i("我进入网络操作了");
+                    tvCollect.setClickable(false);
+                    doAsyncCollect();
+                } else {
+                    IntentUtils.IntentToLogin(StoreDetailActivity.this);
+                }
+
+                break;
+            case R.id.shop_rl_info:
+                if (datas != null) {
+                    showDialogs(datas, 1);
+
+                }
+                break;
+        }
+    }
+
+    private void doAsyncShopInfo() {
+        Map<String, String> map = new HashMap<>();
+        map.put("shopId", shopId);
+        map.put("userId", mUtils.getUid());
+        LogUtils.i("传输的值" + URLBuilder.format(map));
+        OkHttpUtils.post().url(URLBuilder.URLBaseHeader + "/phone/homePageTwo/storeDetail.act").tag(this)
+                .addParams(Key.data, URLBuilder.format(map))
+                .build().execute(new Utils.MyResultCallback<ShopDetailEntity>() {
+
+
+            @Override
+            public void onError(Call call, Exception e) {
+                super.onError(call, e);
 //				tvInfo.setVisibility(View.GONE);
-				if (call.isCanceled()) {
-					call.cancel();
-				} else {
+                if (call.isCanceled()) {
+                    call.cancel();
+                } else {
 
-				}
-			}
+                }
+            }
 
-			@Override
-			public ShopDetailEntity parseNetworkResponse(Response response) throws Exception {
-				String json = response.body().string().trim();
-				LogUtils.i("doAsyncShopInfo json的值" + json);
-				return new Gson().fromJson(json, ShopDetailEntity.class);
-			}
+            @Override
+            public ShopDetailEntity parseNetworkResponse(Response response) throws Exception {
+                String json = response.body().string().trim();
+                LogUtils.i("doAsyncShopInfo json的值" + json);
+                return new Gson().fromJson(json, ShopDetailEntity.class);
+            }
 
-			@Override
-			public void onResponse(ShopDetailEntity response) {
-				if (response != null && response.HTTP_OK.equals(response.getCode())) {
-					setData(response);
-				} else {
-				}
-			}
-		});
-	}
-
-
-	public void doAsyncCollect() {
-		Map<String, String> map = new HashMap<>();
-		map.put("shopId", shopId);
-		map.put("userId", mUtils.getUid());
-		LogUtils.i("传输的网络数据" + URLBuilder.format(map));
-		OkHttpUtils.post().url(URLBuilder.URLBaseHeader + "/phone/homePageTwo/saveDeleteShopCollection.act")
-				.addParams("data", URLBuilder.format(map))
-				.tag(this).build().execute(new Utils.MyResultCallback<NormalEntitys>() {
-			@Override
-			public void onBefore(Request request) {
-				super.onBefore(request);
-			}
-
-			@Override
-			public NormalEntitys parseNetworkResponse(Response response) throws Exception {
-				String json = response.body().string().trim();
-				LogUtils.i("json的值" + json);
-				return new Gson().fromJson(json, NormalEntitys.class);
-			}
-
-			@Override
-			public void onResponse(NormalEntitys response) {
-				if (response != null && response.getCode().equals(response.HTTP_OK)) {
-					//返回值为200 说明请求成功
-					if (response.getData() != null) {
-						if (response.getData().getMsg().equals("1")) {
-							ToastUtils.showToast(StoreDetailActivity.this, "收藏成功");
-							tvCollect.setText("已收藏");
-						} else {
-							ToastUtils.showToast(StoreDetailActivity.this, "取消收藏");
-							tvCollect.setText(" 收藏");
-						}
-					}
-				} else {
-					ToastUtils.showToast(StoreDetailActivity.this, "网络故障 " + response.getMsg());
-				}
-				tvCollect.setClickable(true);
-			}
-
-			@Override
-			public void onError(Call call, Exception e) {
-				super.onError(call, e);
-				LogUtils.i("网络请求失败 " + e);
-				if (call.isCanceled()) {
-					call.cancel();
-				} else {
-					ToastUtils.showToast(StoreDetailActivity.this, "网络故障,请稍后再试 ");
-				}
-
-				tvCollect.setClickable(true);
-			}
-		});
-	}
+            @Override
+            public void onResponse(ShopDetailEntity response) {
+                if (response != null && response.HTTP_OK.equals(response.getCode())) {
+                    setData(response);
+                } else {
+                }
+            }
+        });
+    }
 
 
-	private void setData(ShopDetailEntity data) {
-		this.datas = data;
-		Glide.with(StoreDetailActivity.this)
-				.load(URLBuilder.getUrl( data.getData().getShopImg()))
-				.asBitmap()
-				.centerCrop()
-				.placeholder(R.mipmap.default_goods)
-				.error(R.mipmap.default_goods)
-				.into(shopIcon);
-		tvShopName.setText(data.getData().getShopName());
-		tvServices.setText("起送：" + data.getData().getServiceStartime());
-		tvPublicity.setText("公告：" + data.getData().getShopNotice());
-		MineStoreFrags.instant(shopId).setData(data);
+    public void doAsyncCollect() {
+        Map<String, String> map = new HashMap<>();
+        map.put("shopId", shopId);
+        map.put("userId", mUtils.getUid());
+        LogUtils.i("传输的网络数据" + URLBuilder.format(map));
+        OkHttpUtils.post().url(URLBuilder.URLBaseHeader + "/phone/homePageTwo/saveDeleteShopCollection.act")
+                .addParams("data", URLBuilder.format(map))
+                .tag(this).build().execute(new Utils.MyResultCallback<NormalEntitys>() {
+            @Override
+            public void onBefore(Request request) {
+                super.onBefore(request);
+            }
 
-		if (data.getData().getShopCollectionType() != null && !data.getData().getShopCollectionType().equals("")) {
-			if (data.getData().getShopCollectionType().equals("yes")) {
-				tvCollect.setText("已收藏");
-			} else {
-				tvCollect.setText(" 收藏");
-			}
-		}
-		if (data.getData().getReceipt() .equals("1")) {
-			if (data.getData().getDeliveryDistanceType().equals("1")) {
-				tvStoteStates.setVisibility(View.GONE);
-			} else {
-				tvStoteStates.setVisibility(View.VISIBLE);
-				tvStoteStates.setText("超出配送范围");
-			}
+            @Override
+            public NormalEntitys parseNetworkResponse(Response response) throws Exception {
+                String json = response.body().string().trim();
+                LogUtils.i("json的值" + json);
+                return new Gson().fromJson(json, NormalEntitys.class);
+            }
 
-		} else {
-			tvStoteStates.setVisibility(View.VISIBLE);
-		}
-	}
+            @Override
+            public void onResponse(NormalEntitys response) {
+                if (response != null && response.getCode().equals(response.HTTP_OK)) {
+                    //返回值为200 说明请求成功
+                    if (response.getData() != null) {
+                        if (response.getData().getMsg().equals("1")) {
+                            ToastUtils.showToast(StoreDetailActivity.this, "收藏成功");
+                            tvCollect.setText("已收藏");
+                        } else {
+                            ToastUtils.showToast(StoreDetailActivity.this, "取消收藏");
+                            tvCollect.setText(" 收藏");
+                        }
+                    }
+                } else {
+                    ToastUtils.showToast(StoreDetailActivity.this, "网络故障 " + response.getMsg());
+                }
+                tvCollect.setClickable(true);
+            }
 
-	@Override
-	protected void onDestroy() {
-		OkHttpUtils.getInstance().cancelTag(this);
-		super.onDestroy();
-	}
+            @Override
+            public void onError(Call call, Exception e) {
+                super.onError(call, e);
+                LogUtils.i("网络请求失败 " + e);
+                if (call.isCanceled()) {
+                    call.cancel();
+                } else {
+                    ToastUtils.showToast(StoreDetailActivity.this, "网络故障,请稍后再试 ");
+                }
 
-	StoreInfoDialogs TicketDialog;
+                tvCollect.setClickable(true);
+            }
+        });
+    }
 
-	public void showDialogs(ShopDetailEntity datas,int i) {
 
-		if (TicketDialog == null) {
-			TicketDialog = new StoreInfoDialogs(StoreDetailActivity.this);
-		}
+    private void setData(ShopDetailEntity data) {
+        this.datas = data;
+        Glide.with(StoreDetailActivity.this)
+                .load(URLBuilder.getUrl(data.getData().getShopImg()))
+                .asBitmap()
+                .centerCrop()
+                .placeholder(R.mipmap.default_goods)
+                .error(R.mipmap.default_goods)
+                .into(shopIcon);
+        tvShopName.setText(data.getData().getShopName());
+        tvServices.setText("起送：" + data.getData().getServiceStartime());
+        tvPublicity.setText("公告：" + data.getData().getShopNotice());
+        MineStoreFrags.instant(shopId).setData(data);
 
-		TicketDialog.setCustomDialog(datas,i);
+        if (data.getData().getShopCollectionType() != null && !data.getData().getShopCollectionType().equals("")) {
+            if (data.getData().getShopCollectionType().equals("yes")) {
+                tvCollect.setText("已收藏");
+            } else {
+                tvCollect.setText(" 收藏");
+            }
+        }
+        if (data.getData().getReceipt().equals("1")) {
+            if (data.getData().getDeliveryDistanceType().equals("1")) {
+                tvStoteStates.setVisibility(View.GONE);
+            } else {
+                tvStoteStates.setVisibility(View.VISIBLE);
+                tvStoteStates.setText("超出配送范围");
+            }
 
-		if (!TicketDialog.isShowing()) {
-			TicketDialog.show();
-		}
-	}
+        } else {
+            tvStoteStates.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        OkHttpUtils.getInstance().cancelTag(this);
+        super.onDestroy();
+    }
+
+    StoreInfoDialogs TicketDialog;
+
+    public void showDialogs(ShopDetailEntity datas, int i) {
+
+        if (TicketDialog == null) {
+            TicketDialog = new StoreInfoDialogs(StoreDetailActivity.this);
+        }
+
+        TicketDialog.setCustomDialog(datas, i);
+
+        if (!TicketDialog.isShowing()) {
+            TicketDialog.show();
+        }
+    }
 }

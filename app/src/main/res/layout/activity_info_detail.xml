@@ -5,7 +5,15 @@
               android:background="@color/CED_F1_F4"
               android:orientation="vertical">
 
-    <include layout="@layout/titlebar_layout"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/C50_BD_B5"
+        android:orientation="vertical"
+        android:paddingTop="28dp">
+
+        <include layout="@layout/titlebar_layout"/>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/info_detial_tv_date"
@@ -16,8 +24,7 @@
         android:paddingBottom="@dimen/dis12"
         android:paddingLeft="@dimen/dis15"
         android:paddingTop="@dimen/dis12"
-        android:textColor="@color/C64_64_64"
-        />
+        android:textColor="@color/C64_64_64"/>
 
     <View
         android:layout_width="match_parent"
@@ -29,8 +36,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="vertical"
-        android:padding="@dimen/dis15"
-        >
+        android:padding="@dimen/dis15">
 
         <TextView
             android:id="@+id/info_detial_tv_state"

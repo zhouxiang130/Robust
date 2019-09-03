@@ -1,12 +1,18 @@
 package com.yj.robust.ui.activity;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -36,7 +42,6 @@ import okhttp3.Response;
  */
 
 public class MinePersonalConfirmTelActivity extends BaseActivity {
-
     @BindView(R.id.change_alipay_tel)
     TextView tvTel;
     @BindView(R.id.mine_personal_confirm_tel_verify)
@@ -45,14 +50,17 @@ public class MinePersonalConfirmTelActivity extends BaseActivity {
     TextView tvVerify;
     @BindView(R.id.mine_personal_confirm_tel_btn)
     Button btnConfirm;
-
+    @BindView(R.id.title_ll_iv)
+    ImageView ivTitleIcon;
+    @BindView(R.id.title_layout)
+    LinearLayout lyTitle;
+    @BindView(R.id.title_rl_next)
+    RelativeLayout reLayout;
     boolean isSend = false;
     boolean isNetError = false;
-
     final int TAG_SMS = 0x11;
     private SMSThread mThread;
     private int countTime = 60;
-
     CustomProgressDialog mDialog;
 
     private Handler mHandler = new Handler() {
@@ -90,7 +98,27 @@ public class MinePersonalConfirmTelActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        setTitleInfo();
+        transTitle();
+    }
+
+    private void setTitleInfo() {
         setTitleText("安全验证");
+//      setTitleLeftImg();
+        ivTitleIcon.setImageResource(R.drawable.ic_keyboard_arrow_left_white_24dp);
+        setTitleColor(getResources().getColor(R.color.white));
+        lyTitle.setBackgroundColor(getResources().getColor(R.color.C50_BD_B5));
+        reLayout.setVisibility(View.VISIBLE);
+    }
+
+    @TargetApi(21)
+    private void transTitle() {
+        if (Build.VERSION.SDK_INT >= 21) {
+            View decorView = getWindow().getDecorView();
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decorView.setSystemUiVisibility(option);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
     }
 
     @Override

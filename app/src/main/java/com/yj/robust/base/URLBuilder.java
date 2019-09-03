@@ -31,7 +31,7 @@ public class URLBuilder {
 	public static final String InviteRule = "/phone/homePage/rule.do?type=2";
 
 	public static String getUrl(String url) {
-		if (url.startsWith("http:")) {
+		if (url.startsWith("http")) {
 			return url;
 		} else {
 //			if (url.startsWith("/")) {

@@ -5,8 +5,15 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/C50_BD_B5"
+        android:orientation="vertical"
+        android:paddingTop="28dp">
 
-    <include layout="@layout/titlebar_layout"/>
+        <include layout="@layout/titlebar_layout"/>
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/mine_scoring_detial_rl_title"
@@ -25,12 +32,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white"
-                app:tabIndicatorColor="@color/CE8_3C_3C"
+                app:tabIndicatorColor="@color/C50_BD_B5"
                 app:tabIndicatorHeight="@dimen/dis1.5"
                 app:tabMode="fixed"
                 app:tabPaddingEnd="@dimen/dis_15"
                 app:tabPaddingStart="@dimen/dis_15"
-                app:tabSelectedTextColor="@color/CE8_3C_3C"
+                app:tabSelectedTextColor="@color/C50_BD_B5"
                 app:tabTextAppearance="@style/CustomTabLayoutText13"
                 app:tabTextColor="@color/C40_40_40"/>
 
@@ -88,14 +95,11 @@
                 android:textColor="@color/C66_66_66"
                 android:textSize="@dimen/dis13"/>
 
-
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:background="@mipmap/nex_p"/>
-
-
         </RelativeLayout>
     </LinearLayout>
 

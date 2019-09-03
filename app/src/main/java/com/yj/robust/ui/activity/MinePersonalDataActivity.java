@@ -1,16 +1,22 @@
 package com.yj.robust.ui.activity;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -22,7 +28,6 @@ import com.yj.robust.base.URLBuilder;
 import com.yj.robust.model.NormalEntity;
 import com.yj.robust.util.IntentUtils;
 import com.yj.robust.util.LogUtils;
-import com.yj.robust.util.PermissionUtils;
 import com.yj.robust.util.PicUtils;
 import com.yj.robust.util.ToastUtils;
 import com.yj.robust.util.Utils;
@@ -47,9 +52,6 @@ import io.valuesfeng.picker.utils.PicturePickerUtils;
 import okhttp3.Call;
 import okhttp3.Response;
 
-import static com.yj.robust.util.PermissionUtils.CAMERA_;
-import static com.yj.robust.util.PermissionUtils.REQUEST_CODE_WRITE_EXTRONAL_STORAGE;
-
 /**
  * Created by Suo on 2017/4/28.
  */
@@ -67,7 +69,12 @@ public class MinePersonalDataActivity extends BaseActivity {
 	TextView tvAlipay;
 	@BindView(R.id.mine_personal_tv_leaguer)
 	TextView tvLeaguer;
-
+	@BindView(R.id.title_ll_iv)
+	ImageView ivTitleIcon;
+	@BindView(R.id.title_layout)
+	LinearLayout lyTitle;
+	@BindView(R.id.title_rl_next)
+	RelativeLayout reLayout;
 	CustomProgressDialog loadingDialog;
 	private CustomNormalDialog infoDialog;
 
@@ -93,12 +100,12 @@ public class MinePersonalDataActivity extends BaseActivity {
 
 	@Override
 	protected void initView() {
-		setTitleText("编辑个人资料");
+		setTitleInfo();
+		transTitle();
 	}
 
 	@Override
 	protected void initData() {
-
 		if (!TextUtils.isEmpty(mUtils.getAvatar())) {
 			String url;
 			if (mUtils.getAvatar().startsWith("http")) {
@@ -135,6 +142,25 @@ public class MinePersonalDataActivity extends BaseActivity {
 		}
 		if (!TextUtils.isEmpty(preferencesUtil.getValue("userType", ""))) {
 			tvLeaguer.setText(preferencesUtil.getValue("userType", ""));
+		}
+	}
+
+	private void setTitleInfo() {
+		setTitleText("编辑个人资料");
+//      setTitleLeftImg();
+		ivTitleIcon.setImageResource(R.drawable.ic_keyboard_arrow_left_white_24dp);
+		setTitleColor(getResources().getColor(R.color.white));
+		lyTitle.setBackgroundColor(getResources().getColor(R.color.C50_BD_B5));
+		reLayout.setVisibility(View.VISIBLE);
+	}
+
+	@TargetApi(21)
+	private void transTitle() {
+		if (Build.VERSION.SDK_INT >= 21) {
+			View decorView = getWindow().getDecorView();
+			int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+			decorView.setSystemUiVisibility(option);
+			getWindow().setStatusBarColor(Color.TRANSPARENT);
 		}
 	}
 

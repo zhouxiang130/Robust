@@ -5,7 +5,15 @@
               android:background="@color/CE7_E7_E7"
               android:orientation="vertical">
 
-    <include layout="@layout/titlebar_layout"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/C50_BD_B5"
+        android:orientation="vertical"
+        android:paddingTop="28dp">
+
+        <include layout="@layout/titlebar_layout"/>
+    </LinearLayout>
 
     <com.yj.robust.widget.UserDefineScrollView
         android:id="@+id/defineScrollView"
@@ -28,9 +36,7 @@
                 android:paddingBottom="@dimen/dis8"
                 android:paddingLeft="@dimen/dis15"
                 android:paddingRight="@dimen/dis15"
-                android:paddingTop="@dimen/dis8"
-                >
-
+                android:paddingTop="@dimen/dis8">
 
                 <RelativeLayout
                     android:id="@+id/rl_refund_class_good_info"
@@ -51,8 +57,7 @@
                             android:layout_height="match_parent"
                             android:layout_margin="@dimen/dis4"
                             android:scaleType="centerCrop"
-                            android:src="@mipmap/default_goods"
-                            />
+                            android:src="@mipmap/default_goods"/>
                     </RelativeLayout>
 
                     <LinearLayout
@@ -117,10 +122,7 @@
                         android:layout_toRightOf="@id/order_list_goods_detial_rl1"
                         android:textColor="@color/C85_85_85"
                         android:textSize="@dimen/font12"/>
-
-
                 </RelativeLayout>
-
             </RelativeLayout>
 
             <View
@@ -165,7 +167,6 @@
                         android:text="未收到货（包含未签收）或卖家协商同意前提下"
                         android:textSize="@dimen/font12"/>
 
-
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -173,9 +174,7 @@
                         android:layout_centerVertical="true"
                         android:padding="@dimen/dis5"
                         android:src="@mipmap/nex_p"/>
-
                 </RelativeLayout>
-
             </com.yj.robust.widget.MaterialRippleLayout>
 
             <View
@@ -226,7 +225,6 @@
                         android:text="已收到货，需要退掉已收到的货物"
                         android:textSize="@dimen/font12"/>
 
-
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -234,7 +232,6 @@
                         android:layout_centerVertical="true"
                         android:padding="@dimen/dis5"
                         android:src="@mipmap/nex_p"/>
-
                 </RelativeLayout>
             </com.yj.robust.widget.MaterialRippleLayout>
         </LinearLayout>

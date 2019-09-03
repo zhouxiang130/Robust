@@ -89,7 +89,6 @@ public class HomeFrag extends BaseFragment implements HomeFrag_Contract.View {
 	TextView tvInfo;
 	@BindView(R.id.frag_home_locinfo)
 	LinearLayout homeLocinfo;
-
 	@BindView(R.id.frag_homes_tv_info)
 	MarqueeTextView tvLoc;
 	@BindView(R.id.frag_home_v_head)

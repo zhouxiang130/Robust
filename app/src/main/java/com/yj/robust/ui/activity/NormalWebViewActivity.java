@@ -1,9 +1,12 @@
 package com.yj.robust.ui.activity;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.net.http.SslError;
+import android.os.Build;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.DownloadListener;
@@ -11,8 +14,10 @@ import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import com.yj.robust.R;
 import com.yj.robust.base.BaseActivity;
@@ -25,14 +30,16 @@ import butterknife.BindView;
  */
 
 public class NormalWebViewActivity extends BaseActivity {
-
     @BindView(R.id.webView)
     WebView mWebView;
     @BindView(R.id.progressbar)
     ProgressBar mProgressbar;
     @BindView(R.id.title_layout)
     LinearLayout llTop;
-
+    @BindView(R.id.title_ll_iv)
+    ImageView ivTitleIcon;
+    @BindView(R.id.title_rl_next)
+    RelativeLayout reLayout;
     private String url;
     private String title;
     @Override
@@ -42,6 +49,8 @@ public class NormalWebViewActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        setTitleInfo();
+        transTitle();
         url = getIntent().getStringExtra("url");
         title = getIntent().getStringExtra("title");
         if(!TextUtils.isEmpty(title) ){
@@ -53,6 +62,23 @@ public class NormalWebViewActivity extends BaseActivity {
             }
         }
         webViewInit();
+    }
+    private void setTitleInfo() {
+//      setTitleLeftImg();
+        ivTitleIcon.setImageResource(R.drawable.ic_keyboard_arrow_left_white_24dp);
+        setTitleColor(getResources().getColor(R.color.white));
+        llTop.setBackgroundColor(getResources().getColor(R.color.C50_BD_B5));
+        reLayout.setVisibility(View.VISIBLE);
+    }
+
+    @TargetApi(21)
+    private void transTitle() {
+        if (Build.VERSION.SDK_INT >= 21) {
+            View decorView = getWindow().getDecorView();
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decorView.setSystemUiVisibility(option);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
     }
 
     @Override

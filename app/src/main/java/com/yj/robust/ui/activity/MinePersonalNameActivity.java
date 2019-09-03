@@ -1,8 +1,14 @@
 package com.yj.robust.ui.activity;
 
+import android.annotation.TargetApi;
+import android.graphics.Color;
+import android.os.Build;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.google.gson.Gson;
 import com.yj.robust.R;
@@ -29,9 +35,14 @@ import okhttp3.Response;
  */
 
 public class MinePersonalNameActivity extends BaseActivity {
-
     @BindView(R.id.mine_personal_et_name)
     EditText etName;
+    @BindView(R.id.title_ll_iv)
+    ImageView ivTitleIcon;
+    @BindView(R.id.title_layout)
+    LinearLayout lyTitle;
+    @BindView(R.id.title_rl_next)
+    RelativeLayout reLayout;
     CustomProgressDialog loadingDialog;
 
     @Override
@@ -41,7 +52,27 @@ public class MinePersonalNameActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        setTitleInfo();
+        transTitle();
+    }
+
+    private void setTitleInfo() {
         setTitleText("修改昵称");
+//      setTitleLeftImg();
+        ivTitleIcon.setImageResource(R.drawable.ic_keyboard_arrow_left_white_24dp);
+        setTitleColor(getResources().getColor(R.color.white));
+        lyTitle.setBackgroundColor(getResources().getColor(R.color.C50_BD_B5));
+        reLayout.setVisibility(View.VISIBLE);
+    }
+
+    @TargetApi(21)
+    private void transTitle() {
+        if (Build.VERSION.SDK_INT >= 21) {
+            View decorView = getWindow().getDecorView();
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decorView.setSystemUiVisibility(option);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
     }
 
     @Override
@@ -51,11 +82,11 @@ public class MinePersonalNameActivity extends BaseActivity {
     }
 
     @OnClick({R.id.mine_personal_name_btn})
-    public void onClick(View view){
-        switch (view.getId()){
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.mine_personal_name_btn:
-                if(TextUtils.isEmpty(etName.getText().toString().trim())){
-                    ToastUtils.showToast(MinePersonalNameActivity.this,"请输入要修改的昵称");
+                if (TextUtils.isEmpty(etName.getText().toString().trim())) {
+                    ToastUtils.showToast(MinePersonalNameActivity.this, "请输入要修改的昵称");
                     return;
                 }
                 doAsyncChangeName(etName.getText().toString().trim());
@@ -108,9 +139,9 @@ public class MinePersonalNameActivity extends BaseActivity {
                         etName.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                               finish();
+                                finish();
                             }
-                        },400);
+                        }, 400);
                     } else {
                         ToastUtils.showToast(MinePersonalNameActivity.this, "验证失败 :)" + response.getMsg());
                     }
@@ -122,9 +153,9 @@ public class MinePersonalNameActivity extends BaseActivity {
                 super.onError(call, e);
                 LogUtils.i("网络请求失败" + e);
                 dismissDialog2();
-                if(call.isCanceled()){
+                if (call.isCanceled()) {
                     call.cancel();
-                }else{
+                } else {
                     ToastUtils.showToast(MinePersonalNameActivity.this, "网络故障,请稍后再试");
                 }
 

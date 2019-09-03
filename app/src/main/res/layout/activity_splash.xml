@@ -9,8 +9,7 @@
     <FrameLayout
         android:id="@+id/splash_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent"/>
 
     <ImageView
         android:id="@+id/iv_splash_img"

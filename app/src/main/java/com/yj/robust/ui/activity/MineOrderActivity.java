@@ -1,9 +1,11 @@
 package com.yj.robust.ui.activity;
 
+import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,6 +14,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewOutlineProvider;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.yj.robust.R;
@@ -41,14 +45,15 @@ public class MineOrderActivity extends BaseActivity {
 	RelativeLayout rlTitle;
 	@BindView(R.id.mine_order_vline)
 	View vLine2;
+	@BindView(R.id.title_ll_iv)
+	ImageView ivTitleIcon;
+	@BindView(R.id.title_layout)
+	LinearLayout lyTitle;
+	@BindView(R.id.title_rl_next)
+	RelativeLayout reLayout;
 	OrderListReceiver orderListReceiver;
-
-
 	private List<String> mTitle = new ArrayList<String>();
 	private List<Fragment> mFragment = new ArrayList<Fragment>();
-
-
-	private boolean visible = true;
 	private DynamicReceiver dynamicReceiver;
 
 
@@ -70,7 +75,8 @@ public class MineOrderActivity extends BaseActivity {
 
 	@Override
 	protected void initView() {
-		setTitleText("我的订单");
+		setTitleInfo();
+		transTitle();
 		vLine.setVisibility(View.GONE);
 		mTitle.add("全部");
 		mTitle.add("待付款");
@@ -83,7 +89,6 @@ public class MineOrderActivity extends BaseActivity {
 		dynamicReceiver = new DynamicReceiver();
 		//注册广播接收
 		registerReceiver(dynamicReceiver, filter);
-
 		for (int i = 0; i < mTitle.size(); i++) {
 		    /*if(i == 2){
 		        i++;
@@ -125,6 +130,25 @@ public class MineOrderActivity extends BaseActivity {
 	protected void initData() {
 		showShadow();
 		mViewpager.setCurrentItem(getIntent().getIntExtra("page", 0));
+	}
+
+	private void setTitleInfo() {
+		setTitleText("我的订单");
+//      setTitleLeftImg();
+		ivTitleIcon.setImageResource(R.drawable.ic_keyboard_arrow_left_white_24dp);
+		setTitleColor(getResources().getColor(R.color.white));
+		lyTitle.setBackgroundColor(getResources().getColor(R.color.C50_BD_B5));
+		reLayout.setVisibility(View.VISIBLE);
+	}
+
+	@TargetApi(21)
+	private void transTitle() {
+		if (Build.VERSION.SDK_INT >= 21) {
+			View decorView = getWindow().getDecorView();
+			int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+			decorView.setSystemUiVisibility(option);
+			getWindow().setStatusBarColor(Color.TRANSPARENT);
+		}
 	}
 
 	private void showShadow() {

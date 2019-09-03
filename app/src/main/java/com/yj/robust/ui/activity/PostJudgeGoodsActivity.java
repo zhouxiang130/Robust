@@ -1,16 +1,20 @@
 package com.yj.robust.ui.activity;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -75,13 +79,13 @@ public class PostJudgeGoodsActivity extends BaseActivity {
     View vLine;
     @BindView(R.id.title_layout)
     LinearLayout llTop;
-
+    @BindView(R.id.title_ll_iv)
+    ImageView ivTitleIcon;
     List<JudgeGoodsDataEntity.JudgeGoodsItem> entity;
     private int position;
     private PostJudgeGoodsAdapter.JudgeGoodsViewHolder holder;
     public int takePosition;
     private CustomProgressDialog mDialog;
-
     private String oid;
     private Intent resultIntent;
     PostJudgeGoodsAdapter mAdapter;
@@ -115,8 +119,9 @@ public class PostJudgeGoodsActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        setTitleInfo();
+        transTitle();
         entity = new ArrayList<>();
-        setTitleText("晒单评价");
         rlPost.setVisibility(View.VISIBLE);
         tvPost.setText("发布");
         oid = getIntent().getStringExtra("oid");
@@ -128,6 +133,23 @@ public class PostJudgeGoodsActivity extends BaseActivity {
         resultIntent = new Intent();
         setResult(Variables.REFRESH_ORDER_LIST,resultIntent);
 
+    }
+
+    private void setTitleInfo() {
+        setTitleText("晒单评价");
+//      setTitleLeftImg();
+        ivTitleIcon.setImageResource(R.drawable.ic_keyboard_arrow_left_white_24dp);
+        setTitleColor(getResources().getColor(R.color.white));
+    }
+
+    @TargetApi(21)
+    private void transTitle() {
+        if (Build.VERSION.SDK_INT >= 21) {
+            View decorView = getWindow().getDecorView();
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decorView.setSystemUiVisibility(option);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
     }
 
     @Override
@@ -146,7 +168,7 @@ public class PostJudgeGoodsActivity extends BaseActivity {
     @Override
     protected void showShadow1() {
         vLine.setVisibility(View.GONE);
-        llTop.setBackgroundColor(getResources().getColor(R.color.CF7_F9_FA));
+        llTop.setBackgroundColor(getResources().getColor(R.color.C50_BD_B5));
     }
 
     @Override

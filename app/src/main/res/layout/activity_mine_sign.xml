@@ -33,12 +33,11 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#00000000"
+                    android:background="@color/C50_BD_B5"
                     android:orientation="vertical"
-                    android:paddingTop="24dp">
+                    android:paddingTop="28dp">
 
                     <include layout="@layout/titlebar_layout"/>
-
                 </LinearLayout>
 
                 <LinearLayout

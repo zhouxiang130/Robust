@@ -58,15 +58,12 @@ public class MineScoring1Activity extends BaseActivity {
 	RelativeLayout reLayout;
 	@BindView(R.id.title_ll_iv)
 	ImageView ivTitleIcon;
-
 	@BindView(R.id.mine_scoring_detial_tablayout)
 	TabLayout tabLayout;
 	@BindView(R.id.viewpager)
 	ViewPager mViewpager;
-
 	@BindView(R.id.title_tv_next)
 	TextView tvRightTitle;
-
 	private String score, upintegral, money;
 	private List<String> mTitle = new ArrayList<String>();
 	private List<Fragment> mFragment = new ArrayList<Fragment>();
@@ -81,7 +78,7 @@ public class MineScoring1Activity extends BaseActivity {
 		setTitleText("我的积分");
 		ivTitleIcon.setImageResource(R.drawable.ic_keyboard_arrow_left_white_24dp);
 		setTitleColor(getResources().getColor(R.color.white));
-		lyTitle.setBackgroundColor(getResources().getColor(R.color.CE8_3C_3C));
+		lyTitle.setBackgroundColor(getResources().getColor(R.color.C50_BD_B5));
 		reLayout.setVisibility(View.VISIBLE);
 		tvRightTitle.setText("积分规则");
 		tvRightTitle.setTextColor(getResources().getColor(R.color.white));
@@ -145,7 +142,6 @@ public class MineScoring1Activity extends BaseActivity {
 //					ToastUtils.showToast(this, "积分少于500，无法提升额度");
 //					return;
 //				}
-
 				Intent intentPost = new Intent(this, MineScoringPostActivity.class);
 				intentPost.putExtra("money", money);
 				intentPost.putExtra("upintegral", upintegral);

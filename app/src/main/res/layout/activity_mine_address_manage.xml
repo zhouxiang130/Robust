@@ -6,7 +6,15 @@
               android:background="@color/CF6_F8_F9"
               android:orientation="vertical">
 
-    <include layout="@layout/titlebar_layout"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/C50_BD_B5"
+        android:orientation="vertical"
+        android:paddingTop="28dp">
+
+        <include layout="@layout/titlebar_layout"/>
+    </LinearLayout>
 
     <com.yj.robust.widget.ProgressLayout
         android:id="@+id/progress_layout"
@@ -21,9 +29,7 @@
             <com.jcodecraeer.xrecyclerview.XRecyclerView
                 android:id="@+id/xrecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
-            </com.jcodecraeer.xrecyclerview.XRecyclerView>
+                android:layout_height="match_parent"/>
 
             <LinearLayout
                 android:id="@+id/address_manage_ll"
@@ -31,16 +37,14 @@
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
-                android:visibility="gone"
-                >
+                android:visibility="gone">
 
                 <ImageView
                     android:layout_width="@dimen/dis102"
                     android:layout_height="@dimen/dis102"
                     android:layout_marginTop="@dimen/dis150"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/address_empty"
-                    />
+                    android:src="@mipmap/address_empty"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -61,7 +65,7 @@
                     android:paddingRight="@dimen/dis12"
                     android:paddingTop="@dimen/dis8"
                     android:text="新建收货地址"
-                    android:textColor="@color/CE8_3C_3C"
+                    android:textColor="@color/C50_BD_B5"
                     android:textSize="@dimen/font14"
                     />
             </LinearLayout>

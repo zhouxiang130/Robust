@@ -6,29 +6,34 @@
               android:background="@color/CED_F1_F4"
               android:orientation="vertical">
 
-    <include layout="@layout/titlebar_layout"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/C50_BD_B5"
+        android:orientation="vertical"
+        android:paddingTop="28dp">
+
+        <include layout="@layout/titlebar_layout"/>
+    </LinearLayout>
 
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
-    </android.support.v7.widget.RecyclerView>
-
+        android:layout_weight="1"/>
 
     <!--<TextView-->
-        <!--android:id="@+id/refund_tv_commit"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:background="@color/CE8_3C_3C"-->
-        <!--android:gravity="center"-->
-        <!--android:paddingBottom="@dimen/dis15"-->
-        <!--android:paddingTop="@dimen/dis15"-->
-        <!--android:text="提交"-->
-        <!--android:textColor="@color/white"-->
-        <!--android:textSize="@dimen/font16"/>-->
-
+    <!--android:id="@+id/refund_tv_commit"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:background="@color/CE8_3C_3C"-->
+    <!--android:gravity="center"-->
+    <!--android:paddingBottom="@dimen/dis15"-->
+    <!--android:paddingTop="@dimen/dis15"-->
+    <!--android:text="提交"-->
+    <!--android:textColor="@color/white"-->
+    <!--android:textSize="@dimen/font16"/>-->
 
 </LinearLayout>

@@ -50,7 +50,6 @@ public class MineFrag_presenter implements MineFrag_contract.Presenter {
 	public void unsubscribe() {
 	}
 
-
 	@Override
 	public void setMineHeadInfo(UserUtils mUtils) {
 		this.mUtils = mUtils;
@@ -182,7 +181,6 @@ public class MineFrag_presenter implements MineFrag_contract.Presenter {
 			}
 		});
 	}
-
 
 	public void setData(MineEntity.MineData data) {
 		mView.setDatas(data);

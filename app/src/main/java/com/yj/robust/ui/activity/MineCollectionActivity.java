@@ -1,11 +1,14 @@
 package com.yj.robust.ui.activity;
 
+import android.annotation.TargetApi;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewOutlineProvider;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.yj.robust.R;
@@ -25,8 +28,6 @@ import butterknife.BindView;
  */
 
 public class MineCollectionActivity extends BaseActivity {
-
-
 	@BindView(R.id.mine_collect_tablayout)
 	TabLayout tabLayout;
 	@BindView(R.id.viewpager)
@@ -37,8 +38,12 @@ public class MineCollectionActivity extends BaseActivity {
 	RelativeLayout rlTitle;
 	@BindView(R.id.mine_order_vline)
 	View vLine2;
-
-
+	@BindView(R.id.title_ll_iv)
+	ImageView ivTitleIcon;
+	@BindView(R.id.title_layout)
+	LinearLayout lyTitle;
+	@BindView(R.id.title_rl_next)
+	RelativeLayout reLayout;
 	private List<String> mTitle = new ArrayList<String>();
 	private List<Fragment> mFragment = new ArrayList<Fragment>();
 
@@ -55,9 +60,9 @@ public class MineCollectionActivity extends BaseActivity {
 
 	@Override
 	protected void initView() {
-		setTitleText("我的收藏");
+		setTitleInfo();
+		transTitle();
 		vLine.setVisibility(View.GONE);
-
 		mTitle.add("店铺");
 		mTitle.add("商品");
 
@@ -68,8 +73,6 @@ public class MineCollectionActivity extends BaseActivity {
 			LogUtils.i("我添加了" + i);
 			mFragment.add(MineCollectFrag.instant(i+1));
 		}
-
-
 		MineOrderTabAdapter adapter = new MineOrderTabAdapter(getSupportFragmentManager(), mTitle, mFragment);
 		mViewpager.setAdapter(adapter);
 		//为TabLayout设置ViewPager
@@ -78,8 +81,25 @@ public class MineCollectionActivity extends BaseActivity {
 		//使用ViewPager的适配器
 		//忘了这句干啥的了. 如果使用过程中有问题.应该就是这句导致的.
 		tabLayout.setTabsFromPagerAdapter(adapter);
+	}
 
+	private void setTitleInfo() {
+		setTitleText("我的收藏");
+//      setTitleLeftImg();
+		ivTitleIcon.setImageResource(R.drawable.ic_keyboard_arrow_left_white_24dp);
+		setTitleColor(getResources().getColor(R.color.white));
+		lyTitle.setBackgroundColor(getResources().getColor(R.color.C50_BD_B5));
+		reLayout.setVisibility(View.VISIBLE);
+	}
 
+	@TargetApi(21)
+	private void transTitle() {
+		if (Build.VERSION.SDK_INT >= 21) {
+			View decorView = getWindow().getDecorView();
+			int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+			decorView.setSystemUiVisibility(option);
+			getWindow().setStatusBarColor(Color.TRANSPARENT);
+		}
 	}
 
 

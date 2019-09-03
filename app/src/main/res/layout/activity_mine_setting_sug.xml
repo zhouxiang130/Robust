@@ -6,8 +6,15 @@
               android:background="@color/CF8_F8_F8"
               android:orientation="vertical">
 
-    <include layout="@layout/titlebar_layout"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/C50_BD_B5"
+        android:orientation="vertical"
+        android:paddingTop="28dp">
 
+        <include layout="@layout/titlebar_layout"/>
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,7 +25,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
 
             <TextView
                 android:layout_width="match_parent"
@@ -261,8 +267,6 @@
                             android:paddingTop="5dp"
                             android:text="0"
                             android:textColor="@color/C1E_1E_1E"/>
-
-
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -322,8 +326,7 @@
                                 android:layout_height="@dimen/dis68"
                                 android:layout_marginLeft="@dimen/dis15"
                                 android:layout_toRightOf="@id/judge_offer1_rl1"
-                                android:visibility="gone"
-                                >
+                                android:visibility="gone">
 
                                 <RelativeLayout
                                     android:layout_width="@dimen/dis60"
@@ -360,8 +363,7 @@
                                 android:layout_height="@dimen/dis68"
                                 android:layout_marginLeft="@dimen/dis15"
                                 android:layout_toRightOf="@id/judge_offer2_rl2"
-                                android:visibility="gone"
-                                >
+                                android:visibility="gone">
 
                                 <RelativeLayout
                                     android:layout_width="@dimen/dis60"
@@ -392,10 +394,7 @@
                                     android:visibility="gone"/>
                             </RelativeLayout>
                         </RelativeLayout>
-
                     </RelativeLayout>
-
-
                 </RelativeLayout>
 
                 <View
@@ -407,8 +406,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dis70"
-                android:background="@color/CF8_F8_F8"
-                />
+                android:background="@color/CF8_F8_F8"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

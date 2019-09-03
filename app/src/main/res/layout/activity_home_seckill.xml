@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/CED_F1_F4"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/CED_F1_F4"
+              android:orientation="vertical">
 
-    <include layout="@layout/titlebar_layout" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/C50_BD_B5"
+        android:orientation="vertical"
+        android:paddingTop="28dp">
+
+        <include layout="@layout/titlebar_layout"/>
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,34 +43,39 @@
             app:tabTextColor="@color/white">
 
         </android.support.design.widget.TabLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dis8"
-            android:orientation="horizontal"
+            android:layout_below="@id/home_seckill_tablayout"
             android:background="@color/transparent"
-            android:layout_below="@id/home_seckill_tablayout">
+            android:orientation="horizontal">
+
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 >
+
                 <ImageView
                     android:id="@+id/home_seckill_iv_left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/thr_x"
-                    android:layout_centerHorizontal="true"/>
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/thr_x"/>
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
+
                 <ImageView
                     android:id="@+id/home_seckill_iv_right"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/thr_x"
                     android:layout_centerHorizontal="true"
+                    android:src="@mipmap/thr_x"
                     android:visibility="gone"
                     />
             </RelativeLayout>

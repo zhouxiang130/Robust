@@ -9,17 +9,15 @@
     <View
         android:id="@+id/frag_classify_head"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dis24"
-        android:background="@color/black"
-        android:visibility="gone"
-        />
+        android:layout_height="@dimen/dis28"
+        android:background="@color/C50_BD_B5"
+        android:visibility="gone"/>
 
     <RelativeLayout
         android:id="@+id/frag_classify_rl_top"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dis45"
-        android:background="@color/white"
-        >
+        android:background="@color/C50_BD_B5">
 
         <RelativeLayout
             android:id="@+id/frag_classify_rl_search"
@@ -30,8 +28,7 @@
             android:layout_marginRight="@dimen/dis15"
             android:layout_marginTop="@dimen/dis8"
             android:background="@drawable/shape_corner_ed_radius15"
-            android:gravity="center_horizontal"
-            >
+            android:gravity="center_horizontal">
 
             <ImageView
                 android:id="@+id/frag_classify_iv_search"
@@ -39,8 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/dis10"
-                android:src="@mipmap/search_for"
-                />
+                android:src="@mipmap/search_for"/>
 
             <TextView
                 android:id="@+id/frag_classify_tv_search"
@@ -52,8 +48,7 @@
                 android:singleLine="true"
                 android:text="搜索商品"
                 android:textColor="@color/C64_64_64"
-                android:textSize="@dimen/font12"
-                />
+                android:textSize="@dimen/font12"/>
         </RelativeLayout>
     </RelativeLayout>
 
@@ -94,8 +89,6 @@
                 android:layout_marginRight="@dimen/dis15"
                 android:layout_marginTop="@dimen/dis15"
                 android:background="@color/white"/>
-
         </com.yj.robust.widget.ProgressLayout>
     </LinearLayout>
-
 </LinearLayout>

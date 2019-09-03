@@ -1,6 +1,9 @@
 package com.yj.robust.ui.activity;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -8,6 +11,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -42,7 +48,6 @@ import static java.lang.Float.parseFloat;
  */
 
 public class MineAccountWithdrawActivity extends BaseActivity {
-
 	@BindView(R.id.mine_account_withdraw_account)
 	TextView tvAccount;
 	@BindView(R.id.mine_account_withdraw_name)
@@ -61,15 +66,17 @@ public class MineAccountWithdrawActivity extends BaseActivity {
 	Button btnConfirm;
 	@BindView(R.id.scrollView)
 	ScrollView mScrollView;
-
+	@BindView(R.id.title_ll_iv)
+	ImageView ivTitleIcon;
+	@BindView(R.id.title_layout)
+	LinearLayout lyTitle;
+	@BindView(R.id.title_rl_next)
+	RelativeLayout reLayout;
 	CustomProgressDialog mDialog;
 	private CustomPostDialog postDialog;
-
 	private String balance;
 	private String alipayId;
-
 	private boolean isScroll = false;
-
 	boolean isSend = false;
 	boolean isNetError = false;
 
@@ -112,10 +119,30 @@ public class MineAccountWithdrawActivity extends BaseActivity {
 
 	@Override
 	protected void initView() {
-		setTitleText("提现");
+		setTitleInfo();
+		transTitle();
 		mThread = new SMSThread();
 		if (!mThread.isInterrupted()) {
 			isSend = false;
+		}
+	}
+
+	private void setTitleInfo() {
+		setTitleText("提现");
+//      setTitleLeftImg();
+		ivTitleIcon.setImageResource(R.drawable.ic_keyboard_arrow_left_white_24dp);
+		setTitleColor(getResources().getColor(R.color.white));
+		lyTitle.setBackgroundColor(getResources().getColor(R.color.C50_BD_B5));
+		reLayout.setVisibility(View.VISIBLE);
+	}
+
+	@TargetApi(21)
+	private void transTitle() {
+		if (Build.VERSION.SDK_INT >= 21) {
+			View decorView = getWindow().getDecorView();
+			int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+			decorView.setSystemUiVisibility(option);
+			getWindow().setStatusBarColor(Color.TRANSPARENT);
 		}
 	}
 

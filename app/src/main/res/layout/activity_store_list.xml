@@ -5,14 +5,21 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <include layout="@layout/titlebar_layout"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/C50_BD_B5"
+        android:orientation="vertical"
+        android:paddingTop="28dp">
+
+        <include layout="@layout/titlebar_layout"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dis36"
         android:background="@color/white"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
 
         <LinearLayout
             android:id="@+id/store_list_ll_default"
@@ -29,8 +36,7 @@
                 android:gravity="center"
                 android:text="综合排序"
                 android:textColor="@drawable/selector_color_10_e8"
-                android:textSize="@dimen/font14"
-                />
+                android:textSize="@dimen/font14"/>
         </LinearLayout>
 
         <LinearLayout
@@ -48,9 +54,7 @@
                 android:gravity="center"
                 android:text="距离最近"
                 android:textColor="@drawable/selector_color_10_e8"
-                android:textSize="@dimen/font14"
-                />
-
+                android:textSize="@dimen/font14"/>
         </LinearLayout>
 
         <LinearLayout
@@ -68,9 +72,7 @@
                 android:gravity="center"
                 android:text="销量最高"
                 android:textColor="@drawable/selector_color_10_e8"
-                android:textSize="@dimen/font14"
-                />
-
+                android:textSize="@dimen/font14"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -79,11 +81,9 @@
         android:layout_height="@dimen/dis1"
         android:background="@color/CED_F0_F1"/>
 
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <com.yj.robust.widget.ProgressLayout
             android:id="@+id/progress_layout"
@@ -130,5 +130,4 @@
         <!--android:visibility="gone"-->
         <!--/>-->
     </RelativeLayout>
-
 </LinearLayout>

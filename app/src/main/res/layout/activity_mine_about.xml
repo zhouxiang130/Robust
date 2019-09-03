@@ -5,8 +5,15 @@
     android:background="@color/CF8_F9_FB"
     android:orientation="vertical">
 
-    <include layout="@layout/titlebar_layout" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/C50_BD_B5"
+        android:orientation="vertical"
+        android:paddingTop="28dp">
 
+        <include layout="@layout/titlebar_layout"/>
+    </LinearLayout>
 
     <ImageView
         android:layout_width="@dimen/dis68"
@@ -23,7 +30,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/dis40"
         android:layout_marginTop="@dimen/dis20"
-        android:text="问地"
+        android:text="好新优"
         android:textColor="@color/C10_10_10"
         android:textSize="@dimen/font14" />
 

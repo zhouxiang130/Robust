@@ -1,19 +1,24 @@
 package com.yj.robust.ui.activity;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +60,6 @@ import static com.yj.robust.util.PermissionUtils.REQUEST_CODE_WRITE_EXTRONAL_STO
  */
 
 public class MineSettingActivity extends BaseActivity {
-	private static final String TAG = "MineSettingActivity";
 	@BindView(R.id.mine_setting_version)
 	TextView tvVersion;
 	@BindView(R.id.mine_setting_cache)
@@ -66,10 +70,14 @@ public class MineSettingActivity extends BaseActivity {
 	ImageView ivRed;
 	/*@BindView(R.id.mine_setting_swbtn)
 	SwitchView swButton;*/
-
 	@BindView(R.id.settlement_cart_switch_btn)
 	SwitchView switchBtn;
-
+	@BindView(R.id.title_ll_iv)
+	ImageView ivTitleIcon;
+	@BindView(R.id.title_layout)
+	LinearLayout lyTitle;
+	@BindView(R.id.title_rl_next)
+	RelativeLayout reLayout;
 	UpdateDialog updateDialog;
 	AlertDialog alertDialog;
 	private CustomNormalDialog infoDialog;
@@ -87,7 +95,8 @@ public class MineSettingActivity extends BaseActivity {
 	@Override
 	protected void initView() {
 		tvCache.setText(CacheUtils.getTotalCacheSize(this));
-		setTitleText("设置");
+		setTitleInfo();
+		transTitle();
 		updateDialog = new UpdateDialog(this);
 		newVersion = mUtils.getVersion();
 		oldVersion = GetInfoUtils.getAPPVersion(this);
@@ -114,13 +123,32 @@ public class MineSettingActivity extends BaseActivity {
 
 	}
 
+	private void setTitleInfo() {
+		setTitleText("设置");
+//      setTitleLeftImg();
+		ivTitleIcon.setImageResource(R.drawable.ic_keyboard_arrow_left_white_24dp);
+		setTitleColor(getResources().getColor(R.color.white));
+		lyTitle.setBackgroundColor(getResources().getColor(R.color.C50_BD_B5));
+		reLayout.setVisibility(View.VISIBLE);
+	}
+
+	@TargetApi(21)
+	private void transTitle() {
+		if (Build.VERSION.SDK_INT >= 21) {
+			View decorView = getWindow().getDecorView();
+			int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+			decorView.setSystemUiVisibility(option);
+			getWindow().setStatusBarColor(Color.TRANSPARENT);
+		}
+	}
+
 	@Override
 	protected void initData() {
 
 	}
 
 
-	@OnClick({/*R.id.settlement_cart_switch_btn,*/ R.id.mine_setting_update, R.id.mine_setting_clean, R.id.mine_setting_logout, R.id.mine_setting_help})
+	@OnClick({/*R.id.settlement_cart_switch_btn,*/ R.id.mine_setting_update, R.id.mine_setting_clean, R.id.mine_setting_logout, R.id.mine_setting_help,R.id.mine_setting_about})
 	public void onClick(View view) {
 		switch (view.getId()) {
 //			case R.id.settlement_cart_switch_btn:
@@ -183,8 +211,11 @@ public class MineSettingActivity extends BaseActivity {
 					dialog.show();
 				}
 				break;
+			case R.id.mine_setting_about:
+				Intent intentAbout = new Intent(this, MineAboutActivity.class);
+				startActivity(intentAbout);
+				break;
 			case R.id.mine_setting_help:
-
 				Intent intentSetting = new Intent(this, MineSettingHelpActivity.class);
 				startActivity(intentSetting);
 				break;
@@ -248,10 +279,6 @@ public class MineSettingActivity extends BaseActivity {
 							 * oldVersion = newVersion  return 0
 							 * oldVersion < newVersion  return 1
 							 */
-
-							Log.e(TAG, "onAnimationEnd: newVersion>>>> " +
-									"" + newVersion + " oldVersion>>> " + oldVersion + " " +
-									" >>>>>> " + VersionUtils.compareVersions(newVersion, oldVersion));
 
 							if (VersionUtils.compareVersions(oldVersion, newVersion) == 1) {
 								//版本有更新
@@ -368,8 +395,6 @@ public class MineSettingActivity extends BaseActivity {
 						//判断服务是否开启 如果已经开启 不做操作 没有开启则开启服务进行下载
 						ToastUtils.showToast(MineSettingActivity.this, "正在进行后台下载");
 						Intent intent = new Intent(MineSettingActivity.this, DownAPKService.class);
-
-						Log.e(TAG, "getAppLink: " + URLBuilder.getUrl(URLBuilder.getURLs(data.getAppLink())));
 						mUtils.saveLink(URLBuilder.getUrl(URLBuilder.getURLs(data.getAppLink())));
 						String urLs = URLBuilder.getURLs(data.getAppLink());
 						intent.putExtra("url", URLBuilder.getUrl(urLs));
@@ -390,8 +415,6 @@ public class MineSettingActivity extends BaseActivity {
 									@Override
 									public void onClick(DialogInterface dialog, int which) {
 										Intent intent = new Intent(MineSettingActivity.this, DownAPKService.class);
-
-										Log.e(TAG, "getAppLink: " + URLBuilder.getUrl(URLBuilder.getURLs(data.getAppLink())));
 										mUtils.saveLink(URLBuilder.getUrl(URLBuilder.getURLs(data.getAppLink())));
 										String urLs = URLBuilder.getURLs(data.getAppLink());
 										intent.putExtra("url", URLBuilder.getUrl(urLs));

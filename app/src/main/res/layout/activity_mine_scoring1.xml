@@ -9,9 +9,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/CE8_3C_3C"
+        android:background="@color/C50_BD_B5"
         android:orientation="vertical"
-        android:paddingTop="20dp">
+        android:paddingTop="28dp">
 
         <include layout="@layout/titlebar_layout"/>
     </LinearLayout>
@@ -19,8 +19,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dis180"
-        android:background="@color/CE8_3C_3C"
-        >
+        android:background="@color/C50_BD_B5">
 
         <ImageView
             android:id="@+id/mine_scoring_iv1"
@@ -31,15 +30,6 @@
             android:background="@mipmap/integral"
             android:scaleType="centerCrop"
             android:visibility="gone"/>
-
-        <!--<LinearLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:layout_marginLeft="@dimen/dis15"-->
-        <!--android:orientation="vertical"-->
-        <!--&gt;-->
 
         <TextView
             android:id="@+id/mine_scoring_tv_score"
@@ -52,14 +42,6 @@
             android:drawablePadding="@dimen/dis10"
             android:textColor="@color/white"
             android:textSize="@dimen/font21"/>
-
-        <!--<ImageView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="23dp"-->
-        <!--android:layout_toLeftOf="@id/mine_scoring_tv_score"-->
-        <!--android:paddingRight="@dimen/dis8"-->
-        <!--android:src="@mipmap/jifen"/>-->
 
         <TextView
             android:layout_width="wrap_content"
@@ -96,7 +78,7 @@
                 android:paddingBottom="8dp"
                 android:paddingTop="8dp"
                 android:text="提升额度"
-                android:textColor="@color/CE8_3C_3C"
+                android:textColor="@color/C50_BD_B5"
                 android:textSize="@dimen/font15"/>
 
             <View
@@ -114,12 +96,9 @@
                 android:paddingBottom="8dp"
                 android:paddingTop="8dp"
                 android:text="申请记录"
-                android:textColor="@color/CE8_3C_3C"
+                android:textColor="@color/C50_BD_B5"
                 android:textSize="@dimen/font15"/>
-
-
         </LinearLayout>
-        <!--</LinearLayout>-->
 
         <TextView
             android:id="@+id/mine_scoring_tv_rule"
@@ -155,12 +134,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
-            app:tabIndicatorColor="@color/CE8_3C_3C"
+            app:tabIndicatorColor="@color/C50_BD_B5"
             app:tabIndicatorHeight="@dimen/dis1.5"
             app:tabMode="fixed"
             app:tabPaddingEnd="@dimen/dis_15"
             app:tabPaddingStart="@dimen/dis_15"
-            app:tabSelectedTextColor="@color/CE8_3C_3C"
+            app:tabSelectedTextColor="@color/C50_BD_B5"
             app:tabTextAppearance="@style/CustomTabLayoutText13"
             app:tabTextColor="@color/C40_40_40">
         </android.support.design.widget.TabLayout>

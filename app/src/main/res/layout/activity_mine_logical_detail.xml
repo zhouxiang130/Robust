@@ -6,7 +6,15 @@
               android:background="@color/white"
               android:orientation="vertical">
 
-    <include layout="@layout/titlebar_layout"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/C50_BD_B5"
+        android:orientation="vertical"
+        android:paddingTop="28dp">
+
+        <include layout="@layout/titlebar_layout"/>
+    </LinearLayout>
 
     <com.yj.robust.widget.ProgressLayout
         android:id="@+id/progress_layout"
@@ -45,8 +53,7 @@
                             android:layout_height="match_parent"
                             android:layout_margin="@dimen/dis4"
                             android:scaleType="centerCrop"
-                            android:src="@mipmap/default_goods"
-                            />
+                            android:src="@mipmap/default_goods"/>
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -224,5 +231,4 @@
             </RelativeLayout>
         </RelativeLayout>
     </com.yj.robust.widget.ProgressLayout>
-
 </LinearLayout>

@@ -20,8 +20,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dis215"
-                android:background="@color/CED_F1_F4"
-                >
+                android:background="@color/CED_F1_F4">
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -35,16 +34,14 @@
                     android:layout_height="@dimen/dis30"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/dis15"
-                    android:layout_marginTop="@dimen/dis25"
-                    >
+                    android:layout_marginTop="@dimen/dis25">
 
                     <ImageView
                         android:layout_width="@dimen/dis22"
                         android:layout_height="@dimen/dis22"
                         android:layout_alignParentBottom="true"
                         android:layout_marginBottom="@dimen/dis3"
-                        android:src="@mipmap/new_home"
-                        />
+                        android:src="@mipmap/new_home"/>
 
                     <TextView
                         android:id="@+id/frag_mine_tv_info"
@@ -565,7 +562,7 @@
             <com.yj.robust.widget.MaterialRippleLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-              >
+                >
 
                 <RelativeLayout
                     android:id="@+id/frag_mine_coustom_service"

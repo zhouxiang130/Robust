@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ptr="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/CF8_F8_F8"
-    >
-    <include layout="@layout/titlebar_layout"/>
+              xmlns:ptr="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/CF8_F8_F8"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/C50_BD_B5"
+        android:orientation="vertical"
+        android:paddingTop="28dp">
+
+        <include layout="@layout/titlebar_layout"/>
+    </LinearLayout>
+
     <com.yj.robust.widget.ProgressLayout
         android:id="@+id/progress_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         ptr:progressLayoutDefStyle="@style/ProgressLayout">
+
         <com.jcodecraeer.xrecyclerview.XRecyclerView
             android:id="@+id/xrecyclerView"
             android:layout_width="match_parent"

@@ -37,7 +37,6 @@ public class MineOrderFrag extends LazyLoadFragment {
 	XRecyclerView mRecyclerView;
 	@BindView(R.id.progress_layout)
 	ProgressLayout mProgressLayout;
-
 	MineOrderListAdapter mAdapter;
 	List<MineOrderEntity.DataBean.UserOrderMapsBean> mList;
 	private int flag;

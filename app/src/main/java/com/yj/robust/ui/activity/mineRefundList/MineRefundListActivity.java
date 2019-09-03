@@ -1,8 +1,14 @@
 package com.yj.robust.ui.activity.mineRefundList;
 
+import android.annotation.TargetApi;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.google.gson.Gson;
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
@@ -34,12 +40,16 @@ import okhttp3.Response;
  */
 
 public class MineRefundListActivity extends BaseActivity {
-
-
 	@BindView(R.id.xrecyclerView)
 	XRecyclerView mRecyclerView;
 	@BindView(R.id.progress_layout)
 	ProgressLayout mProgressLayout;
+	@BindView(R.id.title_ll_iv)
+	ImageView ivTitleIcon;
+	@BindView(R.id.title_layout)
+	LinearLayout lyTitle;
+	@BindView(R.id.title_rl_next)
+	RelativeLayout reLayout;
 	List<MineRefundListEntity.DataBean.ListBean> mList;
 	MineRefundListAdapter mAdapter;
 	private int page = 1;
@@ -51,7 +61,8 @@ public class MineRefundListActivity extends BaseActivity {
 
 	@Override
 	protected void initView() {
-		setTitleText("退款/售后");
+		setTitleInfo();
+		transTitle();
 		mList = new ArrayList<>();
 		LinearLayoutManager layoutManager = new LinearLayoutManager(MineRefundListActivity.this);
 		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -60,7 +71,6 @@ public class MineRefundListActivity extends BaseActivity {
 		mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallClipRotate);
 		mAdapter = new MineRefundListAdapter(MineRefundListActivity.this, mList, mUtils);
 		mRecyclerView.setAdapter(mAdapter);
-
 		mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
 			@Override
 			public void onRefresh() {
@@ -88,9 +98,27 @@ public class MineRefundListActivity extends BaseActivity {
 		mRecyclerView.refresh();
 	}
 
+	private void setTitleInfo() {
+		setTitleText("退款/售后");
+//      setTitleLeftImg();
+		ivTitleIcon.setImageResource(R.drawable.ic_keyboard_arrow_left_white_24dp);
+		setTitleColor(getResources().getColor(R.color.white));
+		lyTitle.setBackgroundColor(getResources().getColor(R.color.C50_BD_B5));
+		reLayout.setVisibility(View.VISIBLE);
+	}
+
+	@TargetApi(21)
+	private void transTitle() {
+		if (Build.VERSION.SDK_INT >= 21) {
+			View decorView = getWindow().getDecorView();
+			int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+			decorView.setSystemUiVisibility(option);
+			getWindow().setStatusBarColor(Color.TRANSPARENT);
+		}
+	}
+
 	@Override
 	protected void initData() {
-
 	}
 
 	private void doRefreshData() {

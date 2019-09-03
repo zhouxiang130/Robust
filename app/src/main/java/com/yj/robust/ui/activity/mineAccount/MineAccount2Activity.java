@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -41,8 +40,6 @@ import butterknife.OnClick;
  */
 
 public class MineAccount2Activity extends BaseActivity implements MineAccount_contract.View {
-
-	private static final String TAG = "MineAccount2Activity";
 	@BindView(R.id.title_layout)
 	LinearLayout lyTitle;
 	@BindView(R.id.mine_Lifting_tv_money)
@@ -53,21 +50,15 @@ public class MineAccount2Activity extends BaseActivity implements MineAccount_co
 	RelativeLayout reLayout;
 	@BindView(R.id.title_ll_iv)
 	ImageView ivTitleIcon;
-
 	@BindView(R.id.progress_layout)
 	ProgressLayout mProgressLayout;
-
 	@BindView(R.id.xrecyclerView)
 	XRecyclerView mRecyclerView;
-
-
 	AccountProfitAdapter mAdapter;
 	List<AccountProfitEntity.AccountProfitData> mList;
 	private int pageNum = 1;
-
 	CustomProgressDialog mDialog;
 	private MineAccount_contract.Presenter mineAccPresenter = new MineAccount_Presenter(this);
-
 
 	@Override
 	protected int getContentView() {
@@ -121,14 +112,12 @@ public class MineAccount2Activity extends BaseActivity implements MineAccount_co
 		mRecyclerView.refresh();
 	}
 
-
 	private void setTitleInfo() {
 		setTitleText("账户余额");
 //      setTitleLeftImg();
-
 		ivTitleIcon.setImageResource(R.drawable.ic_keyboard_arrow_left_white_24dp);
 		setTitleColor(getResources().getColor(R.color.white));
-		lyTitle.setBackgroundColor(getResources().getColor(R.color.CE8_3C_3C));
+		lyTitle.setBackgroundColor(getResources().getColor(R.color.C50_BD_B5));
 		reLayout.setVisibility(View.VISIBLE);
 	}
 
@@ -233,8 +222,7 @@ public class MineAccount2Activity extends BaseActivity implements MineAccount_co
 
 	@Override
 	public void setDatas(AccountEntity.AccountData data) {
-		Log.i(TAG, "setData: " + data.getUserMoney());
-		tvMoney.setText(data.getUserMoney());
+		tvMoney.setText("￥" + data.getUserMoney());
 		tvAllMoney.setText("￥" + data.getBackmoney());
 	}
 }

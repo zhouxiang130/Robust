@@ -1,9 +1,15 @@
 package com.yj.robust.ui.activity;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.google.gson.Gson;
 import com.yj.robust.R;
@@ -31,10 +37,14 @@ import okhttp3.Response;
  */
 
 public class MinePersonalConfirmPwdActivity extends BaseActivity {
-
     @BindView(R.id.mine_personal_confirm_pwd)
     EditText etPwd;
-
+    @BindView(R.id.title_ll_iv)
+    ImageView ivTitleIcon;
+    @BindView(R.id.title_layout)
+    LinearLayout lyTitle;
+    @BindView(R.id.title_rl_next)
+    RelativeLayout reLayout;
     CustomProgressDialog loadingDialog;
 
     @Override
@@ -44,7 +54,8 @@ public class MinePersonalConfirmPwdActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        setTitleText("重新绑定");
+        setTitleInfo();
+        transTitle();
     }
 
     @Override
@@ -53,17 +64,38 @@ public class MinePersonalConfirmPwdActivity extends BaseActivity {
     }
 
     @OnClick({R.id.mine_personal_confirm_btn})
-    public void onClick(View view){
-        switch (view.getId()){
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.mine_personal_confirm_btn:
-                if(TextUtils.isEmpty(etPwd.getText().toString().trim())){
-                    ToastUtils.showToast(MinePersonalConfirmPwdActivity.this,"请输入登录密码");
+                if (TextUtils.isEmpty(etPwd.getText().toString().trim())) {
+                    ToastUtils.showToast(MinePersonalConfirmPwdActivity.this, "请输入登录密码");
                     return;
                 }
                 doAsyncConfirmPwd(etPwd.getText().toString().trim());
                 break;
         }
     }
+
+
+    private void setTitleInfo() {
+        setTitleText("重新绑定");
+//      setTitleLeftImg();
+        ivTitleIcon.setImageResource(R.drawable.ic_keyboard_arrow_left_white_24dp);
+        setTitleColor(getResources().getColor(R.color.white));
+        lyTitle.setBackgroundColor(getResources().getColor(R.color.C50_BD_B5));
+        reLayout.setVisibility(View.VISIBLE);
+    }
+
+    @TargetApi(21)
+    private void transTitle() {
+        if (Build.VERSION.SDK_INT >= 21) {
+            View decorView = getWindow().getDecorView();
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decorView.setSystemUiVisibility(option);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
+    }
+
 
     private void doAsyncConfirmPwd(String pwd) {
         Map<String, String> map = new HashMap<>();
@@ -108,11 +140,11 @@ public class MinePersonalConfirmPwdActivity extends BaseActivity {
                         etPwd.postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                Intent intent = new Intent(MinePersonalConfirmPwdActivity.this,MinePersonalTelActivity.class);
+                                Intent intent = new Intent(MinePersonalConfirmPwdActivity.this, MinePersonalTelActivity.class);
                                 startActivity(intent);
                                 finish();
                             }
-                        },400);
+                        }, 400);
                     } else {
                         ToastUtils.showToast(MinePersonalConfirmPwdActivity.this, "验证失败 :)" + response.getMsg());
                     }
@@ -123,9 +155,9 @@ public class MinePersonalConfirmPwdActivity extends BaseActivity {
             public void onError(Call call, Exception e) {
                 super.onError(call, e);
                 LogUtils.i("网络请求失败" + e);
-                if(call.isCanceled()){
+                if (call.isCanceled()) {
                     call.cancel();
-                }else{
+                } else {
                     ToastUtils.showToast(MinePersonalConfirmPwdActivity.this, "网络故障,请稍后再试");
                 }
                 dismissDialog2();

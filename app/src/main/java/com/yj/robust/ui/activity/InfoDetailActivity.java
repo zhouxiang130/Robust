@@ -1,5 +1,12 @@
 package com.yj.robust.ui.activity;
 
+import android.annotation.TargetApi;
+import android.graphics.Color;
+import android.os.Build;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -30,8 +37,14 @@ public class InfoDetailActivity extends BaseActivity {
     TextView tvDate;
     @BindView(R.id.info_detial_tv_state)
     TextView tvState;
-
+    @BindView(R.id.title_ll_iv)
+    ImageView ivTitleIcon;
+    @BindView(R.id.title_layout)
+    LinearLayout lyTitle;
+    @BindView(R.id.title_rl_next)
+    RelativeLayout reLayout;
     private String mid;
+
     @Override
     protected int getContentView() {
         return R.layout.activity_info_detail;
@@ -39,8 +52,28 @@ public class InfoDetailActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        setTitleText("消息详情");
+        setTitleInfo();
+        transTitle();
         mid = getIntent().getStringExtra("mid");
+    }
+
+    private void setTitleInfo() {
+        setTitleText("消息详情");
+//      setTitleLeftImg();
+        ivTitleIcon.setImageResource(R.drawable.ic_keyboard_arrow_left_white_24dp);
+        setTitleColor(getResources().getColor(R.color.white));
+        lyTitle.setBackgroundColor(getResources().getColor(R.color.C50_BD_B5));
+        reLayout.setVisibility(View.VISIBLE);
+    }
+
+    @TargetApi(21)
+    private void transTitle() {
+        if (Build.VERSION.SDK_INT >= 21) {
+            View decorView = getWindow().getDecorView();
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decorView.setSystemUiVisibility(option);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
     }
 
     @Override
@@ -78,9 +111,9 @@ public class InfoDetailActivity extends BaseActivity {
             public void onError(Call call, Exception e) {
                 super.onError(call, e);
                 LogUtils.i("网络请求失败 获取轮播图错误" + e);
-                if(call.isCanceled()){
+                if (call.isCanceled()) {
                     call.cancel();
-                }else {
+                } else {
                     ToastUtils.showToast(InfoDetailActivity.this, "网络故障,请稍后再试 ");
                 }
 
@@ -88,7 +121,7 @@ public class InfoDetailActivity extends BaseActivity {
         });
     }
 
-    private void setData(InfoDetailEntity.InfoDetialData data){
+    private void setData(InfoDetailEntity.InfoDetialData data) {
         tvContent.setText(data.getContent());
         tvState.setText(data.getTitle());
         tvDate.setText(data.getTime());
