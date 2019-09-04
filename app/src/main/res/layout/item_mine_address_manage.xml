@@ -84,15 +84,15 @@
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:focusable="true"
-                    android:paddingBottom="@dimen/dis10"
+                    android:paddingBottom="@dimen/dis5"
                     android:paddingLeft="@dimen/dis10"
                     android:paddingRight="@dimen/dis12"
-                    android:paddingTop="@dimen/dis10">
+                    android:paddingTop="@dimen/dis5">
 
                     <CheckBox
                         android:id="@+id/manage_address_cb"
-                        android:layout_width="@dimen/dis17"
-                        android:layout_height="@dimen/dis17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:button="@drawable/selector_checkbox_address"
                         android:clickable="false"/>
@@ -138,9 +138,9 @@
         <RelativeLayout
             android:id="@+id/rl_address_masking"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@color/C8d_ce_ce_ce"
-            android:visibility="visible"
-            android:layout_height="match_parent">
+            android:visibility="visible">
 
         </RelativeLayout>
 

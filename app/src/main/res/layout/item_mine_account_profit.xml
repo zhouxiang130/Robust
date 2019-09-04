@@ -17,8 +17,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/dis15"
         android:paddingTop="@dimen/dis12"
-        android:background="@color/white"
-        >
+        android:background="@color/white">
         <TextView
             android:id="@+id/item_profit_money"
             android:layout_width="wrap_content"
@@ -26,8 +25,7 @@
             android:layout_alignParentRight="true"
             android:textColor="@color/CE8_3C_3C"
             android:textSize="@dimen/font18"
-            android:layout_marginRight="@dimen/dis15"
-            />
+            android:layout_marginRight="@dimen/dis15"/>
         <TextView
             android:id="@+id/item_profit_title"
             android:layout_width="wrap_content"
@@ -37,8 +35,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textSize="@dimen/font14"
-            android:textColor="@color/C40_40_40"
-            />
+            android:textColor="@color/C40_40_40"/>
         <TextView
             android:id="@+id/item_profit_name"
             android:layout_width="wrap_content"
@@ -57,15 +54,12 @@
             android:textColor="@color/C64_64_64"
             android:layout_marginLeft="@dimen/dis5"
             android:layout_below="@id/item_profit_name"
-            android:layout_marginTop="@dimen/dis8"
-            />
+            android:layout_marginTop="@dimen/dis8"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/dis0.5"
             android:background="@color/CE7_E7_E7"
             android:layout_below="@id/item_profit_time"
-            android:layout_marginTop="@dimen/dis10"
-            />
+            android:layout_marginTop="@dimen/dis10"/>
     </RelativeLayout>
-
 </LinearLayout>

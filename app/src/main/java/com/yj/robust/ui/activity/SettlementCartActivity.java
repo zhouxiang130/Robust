@@ -1,6 +1,9 @@
 package com.yj.robust.ui.activity;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +12,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -22,19 +26,15 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.yj.robust.R;
 import com.yj.robust.base.BaseActivity;
 import com.yj.robust.base.Constant;
-import com.yj.robust.base.Key;
 import com.yj.robust.base.URLBuilder;
 import com.yj.robust.base.Variables;
 import com.yj.robust.model.AlipayEntity;
 import com.yj.robust.model.NormalEntity;
 import com.yj.robust.model.PayResult;
-import com.yj.robust.model.SettlementCartEntity;
 import com.yj.robust.model.SettlementsCartEntity;
 import com.yj.robust.model.WXPayEntity;
 import com.yj.robust.ui.adapter.SettlementCartAdapter;
-import com.yj.robust.util.AESUtils;
 import com.yj.robust.util.LogUtils;
-import com.yj.robust.util.RSAUtils;
 import com.yj.robust.util.ToastUtils;
 import com.yj.robust.util.Utils;
 import com.yj.robust.util.payUtil.OrderInfoUtil2_0;
@@ -62,14 +62,10 @@ import okhttp3.Response;
  */
 
 public class SettlementCartActivity extends BaseActivity {
-
-	public static final String TAG = "SettlementCartActivity";
-
 	@BindView(R.id.recyclerView)
 	RecyclerView mRecyclerView;
 	@BindView(R.id.goods_detial_ticket)
 	RelativeLayout rlTicket;
-
 	@BindView(R.id.settlement_cart_bottom)
 	RelativeLayout rlBottom;
 	@BindView(R.id.settlement_cart_solve)
@@ -114,6 +110,12 @@ public class SettlementCartActivity extends BaseActivity {
 	CheckBox cbAlipay;
 	@BindView(R.id.settlement_cart_cb1)
 	CheckBox cbWechat;
+	@BindView(R.id.title_ll_iv)
+	ImageView ivTitleIcon;
+	@BindView(R.id.title_layout)
+	LinearLayout lyTitle;
+	@BindView(R.id.title_rl_next)
+	RelativeLayout reLayout;
 	SettlementCartAdapter mAdapter;
 	private String cartIdObj, addressId, tickPic;
 	private List<SettlementsCartEntity.DataBean.ProArrayBean> mList;
@@ -124,7 +126,6 @@ public class SettlementCartActivity extends BaseActivity {
 	private int checkedPosition = -1, userCouponId = -1;
 	private IWXAPI api;
 	private static final int SDK_PAY_FLAG = 1001;
-
 
 	private Handler mHandler = new Handler() {
 		@Override
@@ -169,7 +170,8 @@ public class SettlementCartActivity extends BaseActivity {
 
 	@Override
 	protected void initView() {
-		setTitleText("填写订单");
+		setTitleInfo();
+		transTitle();
 		mList = new ArrayList<>();
 		cartIdObj = getIntent().getStringExtra("cartIdObj");
 		LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -179,6 +181,26 @@ public class SettlementCartActivity extends BaseActivity {
 		mRecyclerView.setNestedScrollingEnabled(false);
 		api = WXAPIFactory.createWXAPI(this, Constant.APP_ID);
 	}
+
+	private void setTitleInfo() {
+		setTitleText("填写订单");
+//      setTitleLeftImg();
+		ivTitleIcon.setImageResource(R.drawable.ic_keyboard_arrow_left_white_24dp);
+		setTitleColor(getResources().getColor(R.color.white));
+		lyTitle.setBackgroundColor(getResources().getColor(R.color.C50_BD_B5));
+		reLayout.setVisibility(View.VISIBLE);
+	}
+
+	@TargetApi(21)
+	private void transTitle() {
+		if (Build.VERSION.SDK_INT >= 21) {
+			View decorView = getWindow().getDecorView();
+			int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+			decorView.setSystemUiVisibility(option);
+			getWindow().setStatusBarColor(Color.TRANSPARENT);
+		}
+	}
+
 
 	@Override
 	protected void initData() {
@@ -294,7 +316,7 @@ public class SettlementCartActivity extends BaseActivity {
 					tickPic_ = 0;
 					countTicketPic();
 				}
-				Log.i(TAG, "TicketDialog111111 ---- checkedPosition  " + checkedPosition + " userCouponId :" + userCouponId);
+				LogUtils.i("TicketDialog111111 ---- checkedPosition  " + checkedPosition + " userCouponId :" + userCouponId);
 				TicketDialog.dismiss();
 			}
 		});
@@ -483,7 +505,7 @@ public class SettlementCartActivity extends BaseActivity {
 		total = Float.parseFloat(tvTotals);
 		if (switchBtn.isOpened()) {
 			isA = true;
-			Log.i(TAG, "onMoneyChange: +11111111");
+			LogUtils.i( "onMoneyChange: +11111111");
 			if (total < rest) {
 				tvRest.setText("-" + total + "元");
 				tvRestAll.setText("可用余额抵扣" + new DecimalFormat("0.00").format(rest - total) + "元");
@@ -495,7 +517,7 @@ public class SettlementCartActivity extends BaseActivity {
 			}
 		} else {
 			isA = false;
-			Log.i(TAG, "onMoneyChange: +2222222222222");
+			LogUtils.i( "onMoneyChange: +2222222222222");
 
 			if (!isTickAfterPics) {
 				if (data != null) {
@@ -763,7 +785,6 @@ public class SettlementCartActivity extends BaseActivity {
 	private void alipay(final AlipayEntity.AlipayData.AlipayJson data) {
 		//秘钥验证的类型 true:RSA2 false:RSA
 		boolean rsa2 = true;
-
 		//构造支付订单参数列表
 		Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(data.getAPPID(), rsa2, data);
 		LogUtils.i("params的值" + params);

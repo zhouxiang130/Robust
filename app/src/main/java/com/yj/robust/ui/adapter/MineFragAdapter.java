@@ -104,15 +104,15 @@ public class MineFragAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 						.load(URLBuilder.getUrl(mUtils.getAvatar()))
 						.asBitmap()
 						.fitCenter()
-						.error(R.mipmap.default_avatar)
+						.error(R.mipmap.uuser)
 						.into(((HeadViewHolder) viewHolder).fragMineLoginIv);
 
 			} else {
 				Glide.with(mContext.getApplicationContext())
-						.load(R.mipmap.default_avatar)
+						.load(R.mipmap.uuser)
 						.asBitmap()
 						.fitCenter()
-						.error(R.mipmap.default_avatar)
+						.error(R.mipmap.uuser)
 						.into(((HeadViewHolder) viewHolder).fragMineLoginIv);
 			}
 

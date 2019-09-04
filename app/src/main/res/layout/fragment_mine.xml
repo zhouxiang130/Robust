@@ -25,7 +25,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dis165"
-                    android:background="@mipmap/certer_bg"
+                    android:background="@color/C50_BD_B5"
                     android:scaleType="centerCrop"/>
 
                 <RelativeLayout
@@ -162,7 +162,7 @@
                             android:layout_height="@dimen/dis60"
                             android:layout_gravity="center_horizontal"
                             android:scaleType="fitXY"
-                            android:src="@mipmap/default_avatar"
+                            android:src="@mipmap/uuser"
                             app:riv_border_color="@color/white"
                             app:riv_border_width="@dimen/dis1"
                             app:riv_corner_radius="360dp"

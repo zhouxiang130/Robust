@@ -90,7 +90,7 @@
                                 android:layout_height="@dimen/dis65"
                                 android:layout_gravity="center_horizontal"
                                 android:scaleType="fitXY"
-                                android:src="@mipmap/default_avatar"
+                                android:src="@mipmap/uuser"
                                 app:riv_border_color="@color/white"
                                 app:riv_border_width="@dimen/dis1"
                                 app:riv_corner_radius="360dp"
@@ -102,12 +102,8 @@
                                 android:layout_alignBottom="@id/frag_mine_login_iv"
                                 android:layout_alignRight="@id/frag_mine_login_iv"
                                 android:background="@mipmap/bj"/>
-
-
                         </RelativeLayout>
                     </FrameLayout>
-
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -350,8 +346,7 @@
                         android:drawableTop="@mipmap/personal_pending_delivery"
                         android:text="待发货"
                         android:textColor="@color/C10_10_10"
-                        android:textSize="@dimen/font12"
-                        />
+                        android:textSize="@dimen/font12"/>
 
                     <TextView
                         android:id="@+id/frag_mine_tv_send_num"

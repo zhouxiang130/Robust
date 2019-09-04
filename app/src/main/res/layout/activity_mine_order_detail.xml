@@ -85,12 +85,13 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
+                    android:background="@color/C50_BD_B5"
                     android:layout_height="@dimen/dis75">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@mipmap/bgr_p"
+                        android:src="@mipmap/tree"
                         android:scaleType="centerCrop"/>
 
                     <ImageView

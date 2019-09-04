@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/dis102"
-            android:background="@drawable/account" />
+            android:background="@mipmap/favor" />
         <!--<Button
             android:layout_width="match_parent"
             android:layout_height="@dimen/dis40"

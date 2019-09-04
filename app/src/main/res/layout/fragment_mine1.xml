@@ -78,7 +78,7 @@
                             android:layout_height="@dimen/dis55"
                             android:layout_margin="@dimen/dis15"
                             android:scaleType="fitXY"
-                            android:src="@mipmap/default_avatar"
+                            android:src="@mipmap/uuser"
                             app:riv_border_color="@color/white"
                             app:riv_border_width="@dimen/dis1"
                             app:riv_corner_radius="360dp"/>
@@ -402,8 +402,7 @@
                     android:id="@+id/frag_mine_order_drawback"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:visibility="gone">
+                    android:layout_weight="1">
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -416,7 +415,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dis6"
                             android:drawablePadding="@dimen/dis8"
-                            android:drawableTop="@mipmap/personal_return_goods"
+                            android:drawableTop="@mipmap/return_goods"
                             android:text="退款"
                             android:textColor="@color/C10_10_10"
                             android:textSize="@dimen/font12"/>
@@ -568,6 +567,27 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:weightSum="4">
+
+                    <LinearLayout
+                        android:id="@+id/ll_open"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawablePadding="@dimen/dis8"
+                            android:drawableTop="@mipmap/open_head"
+                            android:gravity="center"
+                            android:text="开通团长"
+                            android:textColor="@color/C10_10_10"
+                            android:textSize="@dimen/font13"/>
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="0dp"

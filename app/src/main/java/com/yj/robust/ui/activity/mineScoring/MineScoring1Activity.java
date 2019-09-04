@@ -49,7 +49,6 @@ import okhttp3.Response;
  */
 
 public class MineScoring1Activity extends BaseActivity {
-
 	@BindView(R.id.mine_scoring_tv_score)
 	TextView tvScore;
 	@BindView(R.id.title_layout)

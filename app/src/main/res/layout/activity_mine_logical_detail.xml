@@ -189,7 +189,7 @@
                         android:layout_height="wrap_content"
                         android:layout_above="@+id/tv_wuliu_info"
                         android:layout_centerHorizontal="true"
-                        android:background="@mipmap/img_wuliu"/>
+                        android:background="@mipmap/receipt"/>
 
                 </RelativeLayout>
 
@@ -226,7 +226,7 @@
                     android:layout_height="wrap_content"
                     android:layout_above="@+id/textview_wuliu_info"
                     android:layout_centerHorizontal="true"
-                    android:background="@mipmap/img_wuliu"/>
+                    android:background="@mipmap/receipt"/>
 
             </RelativeLayout>
         </RelativeLayout>

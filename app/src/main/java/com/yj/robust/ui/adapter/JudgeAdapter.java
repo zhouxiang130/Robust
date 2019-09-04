@@ -73,7 +73,7 @@ public class JudgeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 				Glide.with(mContext)
 						.load(URLBuilder.getUrl(mList.get(position).getUserHeadimg()))
 						.asBitmap()
-						.error(R.mipmap.default_avatar)
+						.error(R.mipmap.uuser)
 						.centerCrop()
 						.into(((JudgeViewHolder) holder).ivHeader);
 			}

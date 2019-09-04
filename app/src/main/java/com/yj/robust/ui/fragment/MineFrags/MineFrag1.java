@@ -126,7 +126,7 @@ public class MineFrag1 extends BaseFragment implements MineFrag_contract.View {
     @OnClick({R.id.frag_mine_info, /*R.id.frag_mine_login_iv,*/ R.id.frag_mine_login_,/* R.id.frag_mine_head_img,*/ R.id.frag_mine_login_ll, R.id.rl_wallet, R.id.rl_integration,
             R.id.frag_mine_order_all, R.id.frag_mine_order_pay, R.id.frag_mine_order_send, R.id.frag_mine_order_get, R.id.frag_mine_order_judge, R.id.frag_mine_order_drawback,
             R.id.iv_qr, R.id.frag_mine_collection, R.id.frag_mine_address, R.id.frag_mine_coustom_service,  /* R.id.frag_mine_ticket, R.id.frag_mine_contact,*/
-            R.id.frag_mine_rl_setting, R.id.rl_coupon, R.id.tv_login})
+            R.id.frag_mine_rl_setting, R.id.rl_coupon, R.id.tv_login, R.id.ll_open})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.frag_mine_info:
@@ -299,6 +299,15 @@ public class MineFrag1 extends BaseFragment implements MineFrag_contract.View {
             case R.id.tv_login:
                 IntentUtils.IntentToLogin(getActivity());
                 break;
+            case R.id.ll_open:
+                if (mUtils.isLogin()) {
+                    Intent intentSetting = new Intent(getActivity(), MineSettingActivity.class);
+                    startActivity(intentSetting);
+                } else {
+                    IntentUtils.IntentToLogin(getActivity());
+                }
+                break;
+
         }
     }
 
@@ -367,14 +376,14 @@ public class MineFrag1 extends BaseFragment implements MineFrag_contract.View {
                     .load(URLBuilder.getUrl(mUtils.getAvatar()))
                     .asBitmap()
                     .fitCenter()
-                    .error(R.mipmap.default_avatar)
+                    .error(R.mipmap.uuser)
                     .into(fragMineLoginIv);
         } else {
             Glide.with(getActivity().getApplicationContext())
-                    .load(R.mipmap.default_avatar)
+                    .load(R.mipmap.uuser)
                     .asBitmap()
                     .fitCenter()
-                    .error(R.mipmap.default_avatar)
+                    .error(R.mipmap.uuser)
                     .into(fragMineLoginIv);
 
         }

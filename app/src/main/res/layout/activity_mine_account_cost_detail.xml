@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/dis10"
-                android:src="@mipmap/alipay_z"/>
+                android:src="@mipmap/alipay_payment"/>
 
             <TextView
                 android:id="@+id/pill_detial_success"

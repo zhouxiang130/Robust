@@ -47,11 +47,9 @@ public class MineCouponDetail_presenter implements MineCouponDetail_contract.Pre
 	}
 
 	@Override
-	public void doRefreshData(final ProgressLayout mProgressLayout,
-	                          UserUtils mUtils,
-	                          final XRecyclerView mRecyclerView,
-	                          final List<CouponListDataEntity.DataBean.ListBean> mList,
-	                          String flag) {
+	public void doRefreshData(final ProgressLayout mProgressLayout, UserUtils mUtils,
+							  final XRecyclerView mRecyclerView,
+	                          final List<CouponListDataEntity.DataBean.ListBean> mList, String flag) {
 		pageNum = 1;
 		mProgressLayout.showContent();
 		Map<String, String> map = new HashMap<>();

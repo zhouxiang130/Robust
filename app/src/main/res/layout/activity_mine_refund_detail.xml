@@ -101,15 +101,15 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dis75"
-                    android:background="@mipmap/bgr_p"
+                    android:background="@color/C50_BD_B5"
                     android:gravity="center|left"
                     android:scaleType="centerCrop">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:visibility="gone"
-                        />
+                        android:src="@mipmap/tree"
+                        android:scaleType="centerCrop"/>
 
                     <TextView
                         android:id="@+id/refound_detial_tv_state"

@@ -70,11 +70,9 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 		this.mUtils = mUtils;
 	}
 
-
 	public void setOnItemClickListener(ShopListClickListener listener) {
 		this.mItemClickListener = listener;
 	}
-
 
 	@Override
 	public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -86,19 +84,16 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 		headTitleViewHolder headTitleViewHolder;
 		ImageViewHolder mImageViewHolder;
 		ImgViewHolder mImgViewHolder;
-
 		if (viewType == 0) {
 			//banner
 			bannerViewHolder = new BannerViewHolder(LayoutInflater
 					.from(mContext).inflate(R.layout.item_home_banner, parent, false));
 			return bannerViewHolder;
-
 		} else if (viewType == 1) {
 			//图片
 			mImageViewHolder = new ImageViewHolder(LayoutInflater
 					.from(mContext).inflate(R.layout.item_home_item_img, parent, false));
 			return mImageViewHolder;
-
 		} else if (viewType == 2) {
 			//图标分类
 			gridViewHolder = new GridViewHolder(LayoutInflater

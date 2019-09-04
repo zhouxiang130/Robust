@@ -45,7 +45,7 @@
                     android:layout_width="@dimen/dis32"
                     android:layout_height="@dimen/dis32"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/alipay_cash"/>
+                    android:src="@mipmap/alipay_payment"/>
 
                 <TextView
                     android:id="@+id/mine_account_withdraw_account"

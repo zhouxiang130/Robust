@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -62,7 +63,7 @@ public class StoreDetailActivity extends BaseActivity {
     RoundedImageView shopIcon;
     @BindView(R.id.shop_detail_name)
     TextView tvShopName;
-    //	@BindView(R.id.shop_dispatch_tv_money)
+    //	@BindView(R.id.shop_dispatch_tv_money)x
 //	TextView tvDispatch;
     @BindView(R.id.shop_dispatch_tv_publicity)
     TextView tvPublicity;
@@ -73,7 +74,7 @@ public class StoreDetailActivity extends BaseActivity {
     @BindView(R.id.tv_store_states)
     TextView tvStoteStates;
     @BindView(R.id.iv_store_banner)
-    RelativeLayout storeBanner;
+    LinearLayout storeBanner;
     @BindView(R.id.tl_home_toolbar)
     Toolbar tlHomeToolbar;
     @BindView(R.id.appbar)

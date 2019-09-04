@@ -18,17 +18,16 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dis30"
             android:paddingLeft="@dimen/dis10"
-            android:paddingRight="@dimen/dis15"
-            >
+            android:paddingRight="@dimen/dis15">
 
             <CheckBox
                 android:id="@+id/item_cart_cb"
+                style="@style/CustomCheckBoxTheme"
                 android:layout_width="@dimen/dis28"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
-                style="@style/CustomCheckBoxTheme"
                 android:clickable="false"/>
-                <!--android:button="@drawable/selector_checkbox_cart_single"-->
+            <!--android:button="@drawable/selector_checkbox_cart_single"-->
 
             <com.yj.robust.widget.RoundedImageView.RoundedImageView
                 android:id="@+id/frag_mine_login_iv"
@@ -40,8 +39,7 @@
                 android:src="@mipmap/default_goods"
                 app:riv_border_color="@color/white"
                 app:riv_border_width="@dimen/dis1"
-                app:riv_corner_radius="360dp"
-                />
+                app:riv_corner_radius="360dp"/>
 
 
             <TextView
@@ -57,7 +55,6 @@
                 android:text=""
                 android:textColor="@color/C1e_1e_1e"
                 android:textSize="@dimen/font14"/>
-
 
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
@@ -87,9 +84,9 @@
                 android:paddingRight="@dimen/dis4"
                 android:paddingTop="@dimen/dis2"
                 android:text="休息中"
-                android:visibility="gone"
                 android:textColor="@color/CE8_3C_3C"
-                android:textSize="@dimen/font12"/>
+                android:textSize="@dimen/font12"
+                android:visibility="gone"/>
 
             <ImageView
                 android:id="@+id/image_icon_more"

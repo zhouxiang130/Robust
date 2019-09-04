@@ -111,9 +111,7 @@ public class CartListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 				pos = position - 1;
 			}
 			this.position = pos;
-
 			if (mList.get(pos).getShopProArray().size() != 0) {
-
 				((CartItemViewHolder) holder).tvShopName.setText(mList.get(pos).getShopName());
 				Glide.with(mContext)
 						.load(URLBuilder.getUrl( mList.get(pos).getShopImg()))
@@ -121,40 +119,30 @@ public class CartListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 						.centerCrop()
 						.error(R.mipmap.default_goods)
 						.into(((CartItemViewHolder) holder).ivShopIcon);
-
-
 				if (positions == pos) {
 					((CartItemViewHolder) holder).cbCheck.setChecked(check);
 				}
-
 				if (mList.get(pos).getShopId() != null) {
 					((CartItemViewHolder) holder).ivMore.setVisibility(View.VISIBLE);
 				} else {
 					((CartItemViewHolder) holder).ivMore.setVisibility(View.GONE);
 				}
-
 				if (mList.get(pos).getShopProArray().size() == 1) {
 					if (mList.get(pos).getShopProArray().get(0).getProductState() == 1) {
 						((CartItemViewHolder) holder).cbCheck.setEnabled(true);
 					} else {
 						((CartItemViewHolder) holder).cbCheck.setEnabled(false);
-//						((CartItemViewHolder) holder).cbCheck.setButtonDrawable(R.drawable.selector_checkbox_orders);
 					}
 				}
-
-
 				if (mList.get(pos).getReceipt() != null && !mList.get(pos).getReceipt().equals("")) {
 					if (mList.get(pos).getReceipt().equals("1")) {
 						((CartItemViewHolder) holder).tvStoreState.setVisibility(View.GONE);
 						((CartItemViewHolder) holder).cbCheck.setEnabled(true);
-
 					} else {
 						((CartItemViewHolder) holder).tvStoreState.setVisibility(View.VISIBLE);
 						((CartItemViewHolder) holder).cbCheck.setEnabled(false);
-//						((CartItemViewHolder) holder).cbCheck.setButtonDrawable(R.drawable.selector_checkbox_orders);
 					}
 				}
-
 				((CartItemViewHolder) holder).cbCheck.setChecked(mList.get(pos).isChoosed());
 				//选择按钮
 				((CartItemViewHolder) holder).cbCheck.setOnClickListener(new View.OnClickListener() {
@@ -164,7 +152,6 @@ public class CartListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 						checkInterfaces.checkGroup(pos, ((CheckBox) view).isChecked());//向外暴露接口
 					}
 				});
-
 				LinearLayoutManager layoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
 				((CartItemViewHolder) holder).gridView.setLayoutManager(layoutManager);
 				receipt = mList.get(pos).getReceipt();

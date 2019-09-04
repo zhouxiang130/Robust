@@ -19,7 +19,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@mipmap/qiandao_bg"
+                android:background="@color/C50_BD_B5"
                 android:orientation="vertical">
             </LinearLayout>
 

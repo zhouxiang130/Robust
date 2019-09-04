@@ -4,7 +4,7 @@
               xmlns:ptr="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/CF8_F9_FB"
+              android:background="@color/white"
               android:orientation="vertical">
 
     <LinearLayout
@@ -93,9 +93,9 @@
         android:layout_gravity="center"
         android:layout_marginLeft="@dimen/dis10"
         android:layout_marginRight="@dimen/dis10"
-        android:layout_marginTop="-30dp"
+        android:layout_marginTop="-40dp"
         app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="@dimen/dis8"
+        app:cardCornerRadius="@dimen/dis5"
         app:cardElevation="@dimen/dis3"
         app:cardUseCompatPadding="true">
 
@@ -103,8 +103,6 @@
             android:id="@+id/ll_withdrawal"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dis50"
-            android:layout_marginLeft="@dimen/dis15"
-            android:layout_marginRight="@dimen/dis15"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -122,9 +120,9 @@
                 android:textSize="@dimen/font15"/>
 
             <View
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:layout_weight="1.4"/>
+                android:layout_width="@dimen/dis1"
+                android:layout_height="@dimen/dis20"
+                android:background="@color/CE7_E7_E7"/>
 
             <TextView
                 android:id="@+id/mine_account_cost"
@@ -141,11 +139,6 @@
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dis6"
-        android:background="@color/CE7_E7_E7"/>
 
 
     <RelativeLayout
@@ -204,10 +197,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/mine_account_all_money"
                 android:text="累计收益："
-                android:textColor="@color/black_color1"
-                />
-
-
+                android:textColor="@color/black_color1"/>
         </RelativeLayout>
 
 
@@ -245,8 +235,8 @@
         <com.jcodecraeer.xrecyclerview.XRecyclerView
             android:id="@+id/xrecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="match_parent"
+            android:background="@color/CF8_F9_FB"/>
 
     </com.yj.robust.widget.ProgressLayout>
 

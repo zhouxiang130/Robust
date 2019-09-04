@@ -72,8 +72,8 @@ public class GoodsDetialJudgeAdapter extends RecyclerView.Adapter<RecyclerView.V
 						.load(URLBuilder.getUrl( mList.get(position).getUserHeadimg()))
 						.asBitmap()
 						.centerCrop()
-						.placeholder(R.mipmap.default_avatar)
-						.error(R.mipmap.default_avatar)
+						.placeholder(R.mipmap.uuser)
+						.error(R.mipmap.uuser)
 						.into(((JudgeViewHolder) holder).ivHeader);
 			}
 

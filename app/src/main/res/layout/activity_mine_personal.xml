@@ -74,7 +74,7 @@
                         android:layout_marginRight="@dimen/dis15"
                         android:layout_toLeftOf="@id/mine_personal_iv5"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/default_avatar"
+                        android:src="@mipmap/uuser"
                         app:riv_oval="true"/>
                 </RelativeLayout>
             </com.yj.robust.widget.MaterialRippleLayout>

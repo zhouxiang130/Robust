@@ -81,7 +81,6 @@ public class MineSettingActivity extends BaseActivity {
 	UpdateDialog updateDialog;
 	AlertDialog alertDialog;
 	private CustomNormalDialog infoDialog;
-
 	private UpdateEntity.UpdateData data;
 
 	private String newVersion;

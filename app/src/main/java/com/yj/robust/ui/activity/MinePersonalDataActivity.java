@@ -117,7 +117,7 @@ public class MinePersonalDataActivity extends BaseActivity {
 					.load(url)
 					.asBitmap()
 					.fitCenter()
-					.error(R.mipmap.default_avatar)
+					.error(R.mipmap.uuser)
 					.into(ivHeader);
 
 		}

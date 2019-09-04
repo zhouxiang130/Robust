@@ -98,8 +98,11 @@
     <dimen name="dis165">165dp</dimen>
     <dimen name="dis180">180dp</dimen>
     <dimen name="dis190">190dp</dimen>
+    <dimen name="dis200">200dp</dimen>
     <dimen name="dis208">208dp</dimen>
     <dimen name="dis215">215dp</dimen>
+    <dimen name="dis220">220dp</dimen>
+    <dimen name="dis240">240dp</dimen>
     <dimen name="dis250">250dp</dimen>
     <dimen name="dis310">310dp</dimen>
     <dimen name="dis350">350dp</dimen>

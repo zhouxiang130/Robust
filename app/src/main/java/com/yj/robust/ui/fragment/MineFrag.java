@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -34,8 +33,8 @@ import com.yj.robust.ui.activity.MineCollectionActivity;
 import com.yj.robust.ui.activity.MineInviteActivity;
 import com.yj.robust.ui.activity.MineOrderActivity;
 import com.yj.robust.ui.activity.MinePersonalDataActivity;
-import com.yj.robust.ui.activity.mineScoring.MineScoring1Activity;
 import com.yj.robust.ui.activity.MineSettingActivity;
+import com.yj.robust.ui.activity.mineScoring.MineScoring1Activity;
 import com.yj.robust.util.IntentUtils;
 import com.yj.robust.util.LogUtils;
 import com.yj.robust.util.ToastUtils;
@@ -128,14 +127,14 @@ public class MineFrag extends BaseFragment {
 					.load(URLBuilder.getUrl(mUtils.getAvatar()))
 					.asBitmap()
 					.fitCenter()
-					.error(R.mipmap.default_avatar)
+					.error(R.mipmap.uuser)
 					.into(ivLogin);
 		} else {
 			Glide.with(getActivity().getApplicationContext())
-					.load(R.mipmap.default_avatar)
+					.load(R.mipmap.uuser)
 					.asBitmap()
 					.fitCenter()
-					.error(R.mipmap.default_avatar)
+					.error(R.mipmap.uuser)
 					.into(ivLogin);
 		}
 		if (mUtils.isLogin()) {

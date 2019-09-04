@@ -119,8 +119,7 @@
                     android:id="@+id/goods_detial_store"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:visibility="gone">
+                    android:layout_weight="1">
 
                     <ImageView
                         android:id="@+id/goods_detial_iv_store"
@@ -130,8 +129,6 @@
                         android:paddingRight="@dimen/dis6"
                         android:paddingTop="@dimen/dis6"
                         android:src="@mipmap/dianpu"/>
-
-
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -223,8 +220,8 @@
                     android:id="@+id/ll_all_buttom_float_layer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:visibility="gone"
-                    android:background="@drawable/shape_corner_nine">
+                    android:background="@drawable/shape_corner_nine"
+                    android:visibility="gone">
                 </View>
 
             </FrameLayout>

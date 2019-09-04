@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -132,7 +131,6 @@ public class MineRefundListGoodsDetailAdapterss extends RecyclerView.Adapter<Rec
 					}
 				} else {
 					((CartItemViewHolder) holder).cbCheck.setEnabled(false);
-//					((CartItemViewHolder) holder).cbCheck.setButtonDrawable(R.drawable.selector_checkbox_orders);
 					setButtonIsShow((CartItemViewHolder) holder);
 					((CartItemViewHolder) holder).rlDelete.setOnClickListener(new View.OnClickListener() {
 						@Override
@@ -144,7 +142,6 @@ public class MineRefundListGoodsDetailAdapterss extends RecyclerView.Adapter<Rec
 				break;
 			case 2:
 				((CartItemViewHolder) holder).cbCheck.setEnabled(false);
-//				((CartItemViewHolder) holder).cbCheck.setButtonDrawable(R.drawable.selector_checkbox_orders);
 //				((CartItemViewHolder) holder).viewMask.setVisibility(View.VISIBLE);
 				((CartItemViewHolder) holder).tvState.setVisibility(View.VISIBLE);
 				((CartItemViewHolder) holder).tvState.setText("已下架");
@@ -159,7 +156,6 @@ public class MineRefundListGoodsDetailAdapterss extends RecyclerView.Adapter<Rec
 			case 3:
 //				((CartItemViewHolder) holder).viewMask.setVisibility(View.VISIBLE);
 				((CartItemViewHolder) holder).cbCheck.setEnabled(false);
-//				((CartItemViewHolder) holder).cbCheck.setButtonDrawable(R.drawable.selector_checkbox_orders);
 				((CartItemViewHolder) holder).tvState.setVisibility(View.VISIBLE);
 				((CartItemViewHolder) holder).tvState.setText("已售罄");
 				setButtonIsShow((CartItemViewHolder) holder);

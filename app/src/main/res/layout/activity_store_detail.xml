@@ -4,7 +4,7 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/transparent"
+              android:background="@color/white"
               android:orientation="vertical">
 
     <android.support.design.widget.CoordinatorLayout
@@ -15,26 +15,27 @@
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="240dp">
+            android:layout_height="@dimen/dis220">
 
             <android.support.design.widget.CollapsingToolbarLayout
                 android:id="@+id/collapsing_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/white"
                 app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
-                <RelativeLayout
+                <LinearLayout
                     android:id="@+id/iv_store_banner"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/shape_corner_seven">
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_corner_seven"
+                    android:orientation="vertical">
 
                     <RelativeLayout
                         android:id="@+id/frag_store_rl_top"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dis45"
-                        android:background="@drawable/shape_corner_seven">
+                        android:layout_height="@dimen/dis45">
 
                         <RelativeLayout
                             android:id="@+id/frag_store_finish"
@@ -49,7 +50,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:src="@drawable/ic_keyboard_arrow_left_white_24dp"/>
-
                         </RelativeLayout>
 
                         <RelativeLayout
@@ -83,41 +83,35 @@
                                 android:textColor="@color/C64_64_64"
                                 android:textSize="@dimen/font12"/>
                         </RelativeLayout>
-
                     </RelativeLayout>
-
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/frag_store_rl_top"
-                        android:layout_gravity="center"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:background="@mipmap/tree"
                         android:gravity="center"
                         android:paddingBottom="@dimen/dis20"
                         android:paddingLeft="@dimen/dis10"
                         android:paddingRight="@dimen/dis10"
-                        android:paddingTop="@dimen/dis20"
-                        >
+                        android:paddingTop="@dimen/dis20">
 
                         <FrameLayout
                             android:id="@+id/fl_store_icon"
-                            android:layout_width="@dimen/dis90"
-                            android:layout_height="@dimen/dis90">
+                            android:layout_width="@dimen/dis80"
+                            android:layout_height="@dimen/dis80"
+                            android:layout_centerVertical="true">
 
                             <com.yj.robust.widget.RoundedImageView.RoundedImageView
                                 android:id="@+id/img_shop_icon"
-                                android:layout_width="@dimen/dis90"
-                                android:layout_height="@dimen/dis90"
-                                android:layout_alignParentLeft="true"
-                                android:layout_alignParentStart="true"
-                                android:layout_centerVertical="true"
+                                android:layout_width="@dimen/dis80"
+                                android:layout_height="@dimen/dis80"
                                 android:layout_gravity="center_horizontal"
                                 android:scaleType="fitXY"
                                 android:src="@mipmap/default_goods"
                                 app:riv_border_color="@color/white"
                                 app:riv_border_width="@dimen/dis0"
-                                app:riv_corner_radius="8dp"
-                                />
+                                app:riv_corner_radius="8dp"/>
 
                             <TextView
                                 android:id="@+id/tv_store_states"
@@ -131,22 +125,11 @@
                                 android:text="休息中"
                                 android:textColor="@color/white"
                                 android:visibility="gone"/>
-
-
                         </FrameLayout>
-
-                        <!--<ImageView-->
-                        <!--android:id="@+id/frag_mine_login_iv"-->
-                        <!--android:layout_width="@dimen/dis60"-->
-                        <!--android:layout_height="@dimen/dis60"-->
-                        <!--android:background="@mipmap/logo"-->
-                        <!--android:visibility="gone"/>-->
-
 
                         <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dis90"
-                            android:layout_centerHorizontal="true"
+                            android:layout_height="@dimen/dis80"
                             android:layout_centerVertical="true"
                             android:layout_toRightOf="@id/fl_store_icon"
                             android:orientation="vertical"
@@ -184,22 +167,6 @@
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/font14"/>
 
-                            <!--<TextView-->
-                            <!--android:id="@+id/shop_dispatch_tv_money"-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:layout_alignBaseline="@+id/shop_Lifting_tv_money"-->
-                            <!--android:layout_alignBottom="@+id/shop_Lifting_tv_money"-->
-                            <!--android:layout_toEndOf="@+id/shop_Lifting_tv_money"-->
-                            <!--android:layout_toRightOf="@+id/shop_Lifting_tv_money"-->
-                            <!--android:maxLines="1"-->
-                            <!--android:paddingBottom="@dimen/dis5"-->
-                            <!--android:paddingTop="@dimen/dis5"-->
-                            <!--android:text=""-->
-                            <!--android:textColor="@color/white"-->
-                            <!--android:textSize="@dimen/font14"/>-->
-
-
                             <TextView
                                 android:id="@+id/shop_dispatch_tv_publicity"
                                 android:layout_width="wrap_content"
@@ -232,7 +199,6 @@
                                 android:textSize="@dimen/font14"/>
 
                             <RelativeLayout
-
                                 android:id="@+id/shop_rl_info"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -255,8 +221,7 @@
                             </RelativeLayout>
                         </RelativeLayout>
                     </RelativeLayout>
-                </RelativeLayout>
-
+                </LinearLayout>
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/tl_home_toolbar"
@@ -266,18 +231,17 @@
                     android:layout_gravity="bottom"
                     android:gravity="bottom">
 
-
                     <android.support.design.widget.TabLayout
                         android:id="@+id/shop_order_tablayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
-                        app:tabIndicatorColor="@color/CE8_3C_3C"
+                        app:tabIndicatorColor="@color/C50_BD_B5"
                         app:tabIndicatorHeight="@dimen/dis4"
                         app:tabMode="fixed"
                         app:tabPaddingEnd="@dimen/dis_15"
                         app:tabPaddingStart="@dimen/dis_15"
-                        app:tabSelectedTextColor="@color/CE8_3C_3C"
+                        app:tabSelectedTextColor="@color/C50_BD_B5"
                         app:tabTextAppearance="@style/CustomTabLayoutText14"
                         app:tabTextColor="@color/C40_40_40">
                     </android.support.design.widget.TabLayout>
@@ -291,8 +255,6 @@
                     android:layout_height="@dimen/dis0.5"
                     android:layout_gravity="bottom"
                     android:background="@color/CE4_E4_E4"/>
-
-
             </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
 

@@ -15,7 +15,6 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
@@ -86,14 +85,10 @@ import okhttp3.Response;
  */
 
 public class GoodsDetailActivity extends BaseActivity implements
-        CustomRollPagerView.ScrollChangeListener,
-        GoodsDetailContentAdapter.ShowDetialInterface,
-        CustomSizeDialogViewGroup.OnGroupItemClickListener,
-        GoodsDetailContentAdapter.showDialogTicket
+        CustomRollPagerView.ScrollChangeListener, GoodsDetailContentAdapter.ShowDetialInterface,
+        CustomSizeDialogViewGroup.OnGroupItemClickListener, GoodsDetailContentAdapter.showDialogTicket
 //		,GoodDetail_contract.View
 {
-
-    private static final String TAG = "GoodsDetailActivity";
     @BindView(R.id.recyclerView_title)
     RecyclerView recyclerViewTitle;
     @BindView(R.id.recyclerView_content)
@@ -114,26 +109,20 @@ public class GoodsDetailActivity extends BaseActivity implements
     RelativeLayout rlTitleAll;
     @BindView(R.id.goods_detial_store)
     RelativeLayout rlStore;
-
     @BindView(R.id.goods_detial_scrollview)
     NestedScrollView mScrollView;
     @BindView(R.id.frag_mine_tv_send_num)
     TextView tvMessageNum;
-
     @BindView(R.id.frag_home_v_head)
     View vHead;
     @BindView(R.id.home_vline)
     View vLine;
     @BindView(R.id.ll_all_buttom_float_layer)
     View vFloatLayer;
-
-
     final int Finish = 0x11;
     final int Cancel = 0x88;
     final int Failed = 0x99;
     private int mHeight;
-
-
     //计算过后的商品高度和评论高度
     public int goodsHeight;
     public int judgeHeight;
@@ -372,8 +361,6 @@ public class GoodsDetailActivity extends BaseActivity implements
 
                 LogUtils.i("scrollY----" + scrollY + "-----mHeight----" + mHeight);
                 if (scrollY <= 0) {
-
-                    Log.i(TAG, "onScrollChange1111: " + "<<<<<<<<<<<<<<<= 0");
                     //顶部图处于最顶部，标题栏透明
                     setTopColor(Color.argb(0, 255, 255, 255));
                     rlTitleAll.setBackgroundColor(Color.argb(0, 255, 255, 255));
@@ -381,7 +368,7 @@ public class GoodsDetailActivity extends BaseActivity implements
                     recyclerViewTitle.setVisibility(View.GONE);
 
                 } else if (scrollY > 0 && scrollY < mHeight) {
-                    Log.i(TAG, "onScrollChange1111: " + "> 0 < mHeight ");
+
                     //滑动过程中，渐变
                     float scale = (float) scrollY / mHeight;//算出滑动距离比例
                     float alpha = (255 * scale);//得到透明度
@@ -390,7 +377,6 @@ public class GoodsDetailActivity extends BaseActivity implements
                     vLine.setVisibility(View.GONE);
                     recyclerViewTitle.setVisibility(View.VISIBLE);
                 } else {
-                    Log.i(TAG, "onScrollChange1111: " + "---------------------------");
                     //过顶部图区域，标题栏定色
                     rlTitleAll.setBackgroundColor(Color.argb(255, 255, 255, 255));
                     setTopColor(Color.argb(255, 0, 0, 0));
@@ -416,7 +402,6 @@ public class GoodsDetailActivity extends BaseActivity implements
     @TargetApi(21)
     private void setTopColor(int color) {
         if (Build.VERSION.SDK_INT >= 21) {
-            Log.i(TAG, "setTopColor: " + color);
             vHead.setBackgroundColor(color);
         }
     }
@@ -733,7 +718,7 @@ public class GoodsDetailActivity extends BaseActivity implements
         mStyle.get(position).setStyle(mSale.get(position).getJsonArray().get(item).getProvalue());
         mStyle.get(position).setStyleId(mSale.get(position).getJsonArray().get(item).getProvalueId());
        /* for(int i = 0;i<mStyle.size();i++){
-	        LogUtils.i("mStyle的值"+mStyle.get(i).getTitleId());
+            LogUtils.i("mStyle的值"+mStyle.get(i).getTitleId());
         }*/
         if (checkForGoods()) {
             StringBuffer stringBuffer = new StringBuffer();
@@ -824,15 +809,12 @@ public class GoodsDetailActivity extends BaseActivity implements
     }
 
     private void setData() {
-
-
+        //TODO 先保存展示
         if (data.getShopId() != null && !data.getShopId().equals("")) {
             rlStore.setVisibility(View.VISIBLE);
         } else {
             rlStore.setVisibility(View.GONE);
         }
-
-
         if (data.getReceipt() != null && !data.getReceipt().equals("")) {
             if (data.getReceipt().equals("1")) {
                 vFloatLayer.setVisibility(View.GONE);

@@ -10,7 +10,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -79,8 +78,6 @@ public class MineLogicalDetialActivity extends BaseActivity {
     RelativeLayout noWuliuInfo;
     @BindView(R.id.title_ll_iv)
     ImageView ivTitleIcon;
-    @BindView(R.id.title_layout)
-    LinearLayout lyTitle;
     @BindView(R.id.title_rl_next)
     RelativeLayout reLayout;
     private String order;
@@ -123,7 +120,6 @@ public class MineLogicalDetialActivity extends BaseActivity {
 //      setTitleLeftImg();
         ivTitleIcon.setImageResource(R.drawable.ic_keyboard_arrow_left_white_24dp);
         setTitleColor(getResources().getColor(R.color.white));
-        lyTitle.setBackgroundColor(getResources().getColor(R.color.C50_BD_B5));
         reLayout.setVisibility(View.VISIBLE);
     }
 
@@ -146,7 +142,7 @@ public class MineLogicalDetialActivity extends BaseActivity {
     @Override
     protected void showShadow1() {
         vLine.setVisibility(View.GONE);
-        llTop.setBackgroundColor(getResources().getColor(R.color.CF7_F9_FA));
+        llTop.setBackgroundColor(getResources().getColor(R.color.C50_BD_B5));
     }
 
     @OnClick({R.id.logical_detial_phone})
