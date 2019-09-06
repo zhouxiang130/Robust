@@ -3,17 +3,20 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:background="@color/white"
-              android:orientation="vertical">
+              android:orientation="vertical"
+              android:visibility="gone">
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dis6"
-        android:background="@color/CF7_F9_FA"/>
+        android:background="@color/CF7_F9_FA"
+        android:visibility="gone"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/iv_store"
@@ -68,8 +71,7 @@
                     android:scrollHorizontally="true"
                     android:singleLine="true"
                     android:textColor="@color/CFF_56_A7_F8"
-                    android:textSize="@dimen/font15"
-                    />
+                    android:textSize="@dimen/font15"/>
 
                 <TextView
                     android:id="@+id/img_tv_range"
@@ -82,15 +84,13 @@
                     android:textColor="@color/C1E_1E_1E"
                     android:textSize="@dimen/font14"/>
             </LinearLayout>
-
-
         </RelativeLayout>
     </LinearLayout>
-
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/dis6"
-        android:background="@color/CF7_F9_FA"/>
+        android:background="@color/CF7_F9_FA"
+        android:visibility="gone"/>
 
 </LinearLayout>

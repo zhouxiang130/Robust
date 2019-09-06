@@ -190,10 +190,7 @@ public class HomeFrag extends BaseFragment {
         mRecyclerView.addItemDecoration(decor);
         mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
         mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallClipRotate);
-
         mAdapter = new HomeAdapter(getActivity(), data, mList, mUtils, layoutManager);
-
-
         if (!TextUtils.isEmpty(mUtils.getUid())) {
             refresh();
         } else {
@@ -691,8 +688,6 @@ public class HomeFrag extends BaseFragment {
                         getActivity().sendBroadcast(intents);
                         mUtils.saveRefreshStore("false");
                     }
-
-
                     //返回值为200 说明请求成功
                     if (response.getData() != null) {
                         data = response.getData();

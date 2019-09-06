@@ -450,9 +450,9 @@
         <meta-data
             android:name="Mob-AppSecret"
             android:value="a92ce1f77e3077e542e3f7df7b7a3eec"/>
-
+        <!-- @TODO 极光推送服务 -->
         <activity
-            android:name=".wxapi.WXEntryActivity"
+            android:name="com.yj.robust.wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
@@ -460,22 +460,24 @@
 
         <!-- 微信支付回调 -->
         <activity
-            android:name=".wxapi.WXPayEntryActivity"
+            android:name="com.yj.robust.wxapi.WXPayEntryActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
 
         <!-- 支付宝支付声明 -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
-            android:configChanges="orientation|keyboardHidden|navigation"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:exported="false"
-            android:screenOrientation="behind">
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
         </activity>
         <activity
-            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:name="com.alipay.sdk.app.H5AuthActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
-            android:screenOrientation="behind">
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
         </activity>
 
         <!-- @TODO 极光推送服务 -->

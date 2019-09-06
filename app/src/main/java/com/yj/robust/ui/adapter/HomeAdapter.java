@@ -7,7 +7,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,8 +50,6 @@ import butterknife.ButterKnife;
  * Created by Suo on 2017/4/12.
  */
 public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
-	public static final String TAG = "HomeAdapter";
 	private LinearLayoutManager layoutManager = null;
 	//	private GridLayoutManager gridLayoutManager = null;
 	private UserUtils mUtils = null;
@@ -250,8 +247,6 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 					.into(((ImageViewHolder) holder).ivNewGoods);
 
 			if (data.getShopName() != null) {
-
-				Log.e(TAG, "getShopName:>>>>>> "+ data.getShopName() );
 				((ImageViewHolder) holder).tvStoreInfo.setText(data.getShopName());
 			} else {
 				((ImageViewHolder) holder).tvStoreInfo.setText("暂无店铺");
@@ -510,9 +505,6 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 			} else {
 				pos = position - 10;
 			}
-
-			Log.i(TAG, "ItemViewHolder: position : ---" + position + " ---- pos  : " + pos);
-
 			((ItemViewHolder) holder).tvTitle.setText(mList.get(pos).getProduct_name());
 			((ItemViewHolder) holder).tvContent.setText(mList.get(pos).getProduct_abstract());
 			((ItemViewHolder) holder).tvPrice.setText("￥" + mList.get(pos).getProduct_current());
