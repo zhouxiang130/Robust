@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -27,7 +26,6 @@ import com.yj.robust.ui.activity.mineCoupon.MineCouponActivity;
 import com.yj.robust.ui.activity.mineScoring.MineScoring1Activity;
 import com.yj.robust.ui.adapter.MineSignInAdapter;
 import com.yj.robust.util.LogUtils;
-import com.yj.robust.util.SharedPreferencesUtil;
 import com.yj.robust.util.Utils;
 import com.yj.robust.widget.Dialog.CustomDialog;
 import com.yj.robust.widget.Dialog.CustomProgressDialog;
@@ -52,54 +50,42 @@ import okhttp3.Response;
  */
 
 public class MineSignInActivity extends BaseActivity implements MineSign_contract.View {
-
-
-	private static final String TAG = "MineSignInActivity";
 	@BindView(R.id.mine_sign_ll_rule)
 	LinearLayout mineSignLlRule;
 	@BindView(R.id.title_ll_iv)
 	ImageView ivTitleIcon;
-
 	@BindView(R.id.mine_sign_text_dayNum)
 	TextView mineSignTextDayNum;
-
 	@BindView(R.id.mine_sign_cb_day1)
 	CheckBox mineSignCbDay1;
 	@BindView(R.id.mine_sign_text_day1)
 	TextView mineSignTextDay1;
 	@BindView(R.id.mine_sign_text_sign)
 	TextView mineSignTextSign;
-
 	@BindView(R.id.mine_sign_cb_day2)
 	CheckBox mineSignCbDay2;
 	@BindView(R.id.mine_sign_text_day2)
 	TextView mineSignTextDay2;
-
 	@BindView(R.id.mine_sign_cb_day3)
 	CheckBox mineSignCbDay3;
 	@BindView(R.id.mine_sign_text_day3)
 	TextView mineSignTextDay3;
-
 	@BindView(R.id.mine_sign_cb_day4)
 	CheckBox mineSignCbDay4;
 	@BindView(R.id.mine_sign_text_day4)
 	TextView mineSignTextDay4;
-
 	@BindView(R.id.mine_sign_cb_day5)
 	CheckBox mineSignCbDay5;
 	@BindView(R.id.mine_sign_text_day5)
 	TextView mineSignTextDay5;
-
 	@BindView(R.id.mine_sign_cb_day6)
 	CheckBox mineSignCbDay6;
 	@BindView(R.id.mine_sign_text_day6)
 	TextView mineSignTextDay6;
-
 	@BindView(R.id.mine_sign_cb_day7)
 	CheckBox mineSignCbDay7;
 	@BindView(R.id.mine_sign_text_day7)
 	TextView mineSignTextDay7;
-
 	@BindView(R.id.mRecyclerView)
 	RecyclerView mRecyclerView;
 
@@ -278,8 +264,6 @@ public class MineSignInActivity extends BaseActivity implements MineSign_contrac
 			public void onResponse(SignInEntity response) {
 				if (response != null && response.HTTP_OK.equals(response.getCode())) {
 //					days = response.getData().getSignDay().getDays();
-					Log.i(TAG, "onResponse: " + response.getMsg());
-					Log.e(TAG, "onResponse: " +response.getData().getSignList().size());
 					mData.addAll(response.getData().getSignList());
 					mAdapter.notifyDataSetChanged();
 					setData(response.getData());
@@ -366,7 +350,6 @@ public class MineSignInActivity extends BaseActivity implements MineSign_contrac
 			@Override
 			public void onResponse(NormalEntity response) {
 				if (response != null && response.HTTP_OK.equals(response.getCode())) {
-					Log.i(TAG, "onResponse: " + response.getMsg());
 					Toast.makeText(MineSignInActivity.this, "签到成功", Toast.LENGTH_SHORT).show();
 				} else {
 					Toast.makeText(MineSignInActivity.this, "签到失败", Toast.LENGTH_SHORT).show();

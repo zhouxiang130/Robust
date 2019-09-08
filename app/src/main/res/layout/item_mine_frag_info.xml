@@ -43,7 +43,7 @@
                         android:layout_height="@dimen/dis22"
                         android:layout_alignParentBottom="true"
                         android:layout_marginBottom="@dimen/dis3"
-                        android:src="@mipmap/xiaoxi2x"
+                        android:src="@mipmap/message"
                         />
 
                     <TextView
@@ -54,7 +54,7 @@
                         android:background="@drawable/shape_round360_white"
                         android:gravity="center"
                         android:text=""
-                        android:textColor="@color/CE8_3C_3C"
+                        android:textColor="@color/C50_BD_B5"
                         android:textSize="@dimen/font8"
                         android:visibility="gone"/>
 
@@ -170,8 +170,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="vertical"
-                    >
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/frag_mine_account_money"
@@ -180,7 +179,7 @@
                         android:layout_gravity="center"
                         android:paddingBottom="5dp"
                         android:text="0.00"
-                        android:textColor="@color/CE8_3C_3C"
+                        android:textColor="@color/C50_BD_B5"
                         android:textSize="@dimen/font18"/>
 
                     <TextView
@@ -215,7 +214,7 @@
                         android:layout_gravity="center"
                         android:paddingBottom="5dp"
                         android:text="0"
-                        android:textColor="@color/CE8_3C_3C"
+                        android:textColor="@color/C50_BD_B5"
                         android:textSize="@dimen/font18"
                         />
 
